@@ -7,7 +7,11 @@
     
     <!-- Meta untuk PWA & Ikon Telefon/Laptop -->
     <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="e-Sharing">
+    
+    <!-- Ikon untuk Android & iOS (PWA) -->
     <link rel="apple-touch-icon" href="logo.jpg">
     <link rel="icon" type="image/jpeg" href="logo.jpg">
 
@@ -20,52 +24,66 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
         body { font-family: 'Inter', sans-serif; }
         
+        /* Animasi Logo */
         .logo-hover:hover {
-            transform: scale(1.05);
-            transition: all 0.3s ease;
+            transform: scale(1.08) rotate(2deg);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Gradient Glassmorphism */
+        .glass-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
         }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
 
-    <div class="h-2 bg-[#F6B93B] w-full"></div>
+    <!-- Garis hiasan atas -->
+    <div class="h-2 bg-[#F6B93B] w-full sticky top-0 z-[60]"></div>
 
-    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+    <header class="glass-header border-b border-slate-200 sticky top-2 z-50 shadow-sm mx-2 md:mx-4 rounded-b-2xl">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
+                <!-- Bahagian Logo Sekolah -->
                 <div class="flex items-center space-x-4">
-                    <div class="p-1 bg-white rounded-lg shadow-sm border border-slate-100 logo-hover">
+                    <div class="p-0.5 bg-white rounded-full shadow-md border-2 border-[#F6B93B] logo-hover overflow-hidden">
                         <img src="logo.jpg" 
                              alt="Logo SK Pendidikan Khas Miri" 
-                             class="h-14 w-14 object-contain rounded-md">
+                             class="h-14 w-14 object-cover"
+                             onerror="this.src='https://via.placeholder.com/150?text=LOGO'">
                     </div>
                     <div class="flex flex-col">
                         <h1 class="text-2xl font-[900] text-[#0A3D62] tracking-tight leading-none uppercase">e-Sharing</h1>
-                        <div class="flex items-center mt-1 text-slate-500 font-bold uppercase tracking-widest text-[10px]">
+                        <div class="flex items-center mt-1 text-slate-500 font-bold uppercase tracking-widest text-[9px] sm:text-[10px]">
                             <span class="h-[2px] w-4 bg-[#E74C3C] mr-2"></span>
                             SK Pendidikan Khas Miri
                         </div>
                     </div>
                 </div>
 
+                <!-- Navigasi Desktop -->
                 <nav id="desktop-nav" class="hidden lg:flex items-center space-x-1"></nav>
 
+                <!-- Menu Mobile Button -->
                 <div class="lg:hidden">
-                    <button id="mobile-menu-btn" class="p-2 text-[#0A3D62]">
+                    <button id="mobile-menu-btn" class="p-2 text-[#0A3D62] hover:bg-slate-100 rounded-xl transition-colors">
                         <i data-lucide="menu" size="28"></i>
                     </button>
                 </div>
             </div>
         </div>
-        <div id="mobile-nav" class="hidden lg:hidden bg-white border-t border-slate-100 p-4 space-y-2 shadow-xl"></div>
+        <!-- Dropdown Navigasi Mobile -->
+        <div id="mobile-nav" class="hidden lg:hidden bg-white border-t border-slate-100 p-4 space-y-2 shadow-xl rounded-b-2xl"></div>
     </header>
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <!-- Banner Utama -->
         <section id="billboard" class="mb-12"></section>
 
         <!-- Submenu Section -->
         <section id="submenu-section" class="mb-12 hidden">
-            <div class="flex items-center space-x-2 mb-4">
+            <div class="flex items-center space-x-2 mb-6">
                 <div class="h-px bg-slate-200 flex-1"></div>
                 <span id="submenu-title" class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4">Kategori Dokumen</span>
                 <div class="h-px bg-slate-200 flex-1"></div>
@@ -73,28 +91,36 @@
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4" id="submenu-container"></div>
         </section>
 
-        <div class="relative mb-12">
-            <i data-lucide="search" class="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400" size="20"></i>
-            <input type="text" id="search-input" placeholder="Cari dokumen..." 
-                   class="w-full pl-14 pr-6 py-5 rounded-2xl bg-white border border-slate-100 shadow-sm focus:ring-2 focus:ring-[#0A3D62]/10 outline-none font-bold text-slate-700">
+        <!-- Carian -->
+        <div class="relative mb-12 group">
+            <i data-lucide="search" class="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#0A3D62] transition-colors" size="20"></i>
+            <input type="text" id="search-input" placeholder="Cari dokumen, minit, atau pekeliling..." 
+                   class="w-full pl-16 pr-8 py-6 rounded-3xl bg-white border border-slate-100 shadow-sm focus:ring-4 focus:ring-[#0A3D62]/5 focus:border-[#0A3D62]/20 outline-none font-bold text-slate-700 text-lg transition-all">
         </div>
 
+        <!-- Grid Dokumen -->
         <div class="space-y-6">
-            <div class="flex items-center justify-between px-2 mb-2">
-                <h3 class="font-[900] text-[#0A3D62] uppercase tracking-[0.1em] text-lg italic">ARKIB DOKUMEN DIGITAL</h3>
-                <span id="doc-count" class="px-5 py-1.5 bg-[#F6B93B] rounded-full text-[10px] font-black text-[#0A3D62] shadow-sm uppercase">0 ITEM</span>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between px-2 mb-4 gap-4">
+                <h3 class="font-[900] text-[#0A3D62] uppercase tracking-[0.1em] text-xl italic flex items-center">
+                    <i data-lucide="folder-kanban" class="mr-3 text-[#E74C3C]"></i>
+                    ARKIB DOKUMEN DIGITAL
+                </h3>
+                <span id="doc-count" class="w-fit px-5 py-2 bg-[#F6B93B] rounded-full text-[10px] font-black text-[#0A3D62] shadow-sm uppercase tracking-wider">0 ITEM</span>
             </div>
             <div id="document-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
         </div>
     </main>
 
-    <footer class="bg-[#0A3D62] py-16 mt-20 text-white text-center border-t-4 border-[#F6B93B]">
+    <footer class="bg-[#0A3D62] py-20 mt-20 text-white text-center border-t-4 border-[#F6B93B]">
         <div class="max-w-7xl mx-auto px-4 flex flex-col items-center">
-            <div class="bg-white p-2 rounded-2xl mb-6 shadow-2xl">
-                <img src="logo.jpg" alt="Logo Sekolah" class="h-16 w-16">
+            <div class="bg-white p-3 rounded-full mb-6 shadow-2xl border-4 border-[#F6B93B]/30">
+                <img src="logo.jpg" alt="Logo Sekolah" class="h-20 w-20 object-cover" onerror="this.src='https://via.placeholder.com/150'">
             </div>
-            <h4 class="text-xl font-[900] uppercase italic tracking-tighter">e-Sharing SKPK Miri</h4>
-            <p class="text-blue-100/50 text-xs font-bold mt-2 uppercase tracking-widest">"Bersatu Berdikari"</p>
+            <h4 class="text-2xl font-[900] uppercase italic tracking-tighter">e-Sharing SKPK Miri</h4>
+            <p class="text-blue-100/50 text-[10px] font-black mt-3 uppercase tracking-[0.3em]">"Bersatu Berdikari"</p>
+            <div class="mt-8 pt-8 border-t border-white/10 w-full max-w-xs text-[10px] text-white/30 font-bold uppercase tracking-widest">
+                © 2024 Portal Rasmi SKPK Miri
+            </div>
         </div>
     </footer>
 
@@ -112,7 +138,6 @@
             { id: 10, title: "Minit Mesyuarat Guru Bil 2/2024", source: "SEKOLAH", type: "Minit Mesyuarat", date: "2024-05-17T09:00:00" }
         ];
 
-        // Menu SEKOLAH ditambah dalam menuItems
         const menuItems = ["Semua", "KPM", "BPKHAS", "JPN", "PPD", "SEKOLAH", "Rujukan Pengoperasian", "LAIN-LAIN"];
         
         const agencySubMenu = [
@@ -163,34 +188,33 @@
 
         function renderNav() {
             desktopNav.innerHTML = menuItems.map(item => `
-                <button onclick="handleTabChange('${item}')" class="px-3 py-2.5 rounded-lg text-[10px] font-[900] transition-all uppercase tracking-wider ${activeTab === item ? 'bg-[#0A3D62] text-white shadow-lg' : 'text-[#0A3D62] hover:bg-slate-100'}">
+                <button onclick="handleTabChange('${item}')" class="px-3 py-2 rounded-lg text-[10px] font-[900] transition-all uppercase tracking-wider ${activeTab === item ? 'bg-[#0A3D62] text-white shadow-lg shadow-[#0A3D62]/20 scale-105' : 'text-[#0A3D62] hover:bg-slate-100'}">
                     ${item}
                 </button>
             `).join('');
 
             mobileNav.innerHTML = menuItems.map(item => `
-                <button onclick="handleTabChange('${item}')" class="block w-full text-left px-5 py-4 rounded-xl text-sm font-black uppercase tracking-widest ${activeTab === item ? 'bg-[#0A3D62] text-white' : 'text-slate-600'}">
+                <button onclick="handleTabChange('${item}')" class="block w-full text-left px-5 py-4 rounded-2xl text-sm font-black uppercase tracking-widest ${activeTab === item ? 'bg-[#0A3D62] text-white shadow-lg' : 'text-slate-600 hover:bg-slate-50'}">
                     ${item}
                 </button>
             `).join('');
         }
 
         function renderSubMenu() {
-            // "SEKOLAH" kini termasuk dalam syarat untuk memaparkan agencySubMenu
             const isAgency = ["KPM", "BPKHAS", "JPN", "PPD", "SEKOLAH", "LAIN-LAIN"].includes(activeTab);
             const isOperation = activeTab === "Rujukan Pengoperasian";
             
             if (isAgency || isOperation) {
                 subMenuSection.classList.remove('hidden');
                 const options = isOperation ? operationSubMenu : agencySubMenu;
-                submenuTitle.textContent = isOperation ? "Navigasi Pengoperasian" : "Kategori Dokumen";
+                submenuTitle.textContent = isOperation ? "Navigasi Pengoperasian" : `Kategori ${activeTab}`;
                 
                 subMenuContainer.innerHTML = options.map(opt => `
-                    <button onclick="handleSubTabChange('${opt.id}')" class="flex flex-col items-center justify-center p-4 rounded-2xl border-2 transition-all group ${activeSubTab === opt.id ? 'border-[#0A3D62] bg-white shadow-md' : 'border-transparent bg-white shadow-sm hover:shadow-md'}">
-                        <div class="p-3 rounded-xl mb-2 ${activeSubTab === opt.id ? 'bg-[#0A3D62] text-white' : 'bg-slate-100 text-[#0A3D62] group-hover:bg-[#E74C3C] group-hover:text-white'}">
-                            <i data-lucide="${opt.icon}" size="18"></i>
+                    <button onclick="handleSubTabChange('${opt.id}')" class="flex flex-col items-center justify-center p-5 rounded-[2rem] border-2 transition-all group ${activeSubTab === opt.id ? 'border-[#0A3D62] bg-white shadow-xl scale-105 z-10' : 'border-transparent bg-white shadow-sm hover:shadow-md hover:-translate-y-1'}">
+                        <div class="p-4 rounded-2xl mb-3 ${activeSubTab === opt.id ? 'bg-[#0A3D62] text-white rotate-6' : 'bg-slate-100 text-[#0A3D62] group-hover:bg-[#E74C3C] group-hover:text-white transition-transform'}">
+                            <i data-lucide="${opt.icon}" size="20"></i>
                         </div>
-                        <span class="font-black text-[8px] sm:text-[9px] text-center uppercase tracking-tighter ${activeSubTab === opt.id ? 'text-[#0A3D62]' : 'text-slate-600'}">
+                        <span class="font-black text-[9px] text-center uppercase tracking-tighter ${activeSubTab === opt.id ? 'text-[#0A3D62]' : 'text-slate-600'}">
                             ${opt.label}
                         </span>
                     </button>
@@ -206,22 +230,33 @@
             const dateStr = new Date(latest.date).toLocaleDateString('ms-MY', { day: 'numeric', month: 'long', year: 'numeric' });
             
             billboard.innerHTML = `
-                <div class="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-[#0A3D62] to-[#3C6382] text-white shadow-2xl">
-                    <div class="relative z-10 p-10 md:p-16 flex flex-col md:flex-row md:items-center justify-between gap-10">
+                <div class="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-[#0A3D62] via-[#0A3D62] to-[#205072] text-white shadow-2xl border-b-8 border-[#F6B93B]">
+                    <!-- Corak latar belakang -->
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-20 -mt-20 blur-3xl"></div>
+                    
+                    <div class="relative z-10 p-10 md:p-20 flex flex-col lg:flex-row lg:items-center justify-between gap-12">
                         <div class="flex-1">
-                            <div class="flex items-center space-x-3 mb-6">
-                                <span class="px-4 py-1.5 bg-[#E74C3C] text-[10px] font-black rounded-full shadow-lg border border-red-400 uppercase tracking-widest">TERKINI</span>
-                                <span class="text-xs font-bold text-blue-100 uppercase tracking-widest">${latest.source}</span>
+                            <div class="flex items-center space-x-3 mb-8">
+                                <span class="px-5 py-2 bg-[#E74C3C] text-[10px] font-[900] rounded-full shadow-lg border border-red-400 uppercase tracking-widest animate-pulse">BARU</span>
+                                <span class="text-xs font-black text-[#F6B93B] uppercase tracking-[0.2em]">${latest.source}</span>
                             </div>
-                            <h3 class="text-3xl md:text-5xl font-black mb-6 leading-tight">${latest.title}</h3>
-                            <div class="flex items-center text-blue-100 font-bold bg-white/10 w-fit px-4 py-2 rounded-xl backdrop-blur-sm">
-                                <i data-lucide="clock" size="18" class="mr-3 text-[#F6B93B]"></i>
-                                <span class="text-sm">${dateStr}</span>
+                            <h3 class="text-4xl md:text-6xl font-[900] mb-8 leading-[1.1] tracking-tight">
+                                ${latest.title}
+                            </h3>
+                            <div class="flex items-center text-blue-100 font-bold bg-white/10 w-fit px-6 py-3 rounded-2xl backdrop-blur-md border border-white/10">
+                                <i data-lucide="calendar" size="20" class="mr-3 text-[#F6B93B]"></i>
+                                <span class="text-sm uppercase tracking-widest">${dateStr}</span>
                             </div>
                         </div>
-                        <button class="bg-[#F6B93B] text-[#0A3D62] px-10 py-5 rounded-2xl font-black shadow-xl hover:scale-105 transition-all flex items-center uppercase text-sm tracking-tighter">
-                            BUKA FAIL <i data-lucide="chevron-right" size="24" class="ml-2"></i>
-                        </button>
+                        <div class="flex flex-col items-center gap-4">
+                            <!-- Logo dalam billboard -->
+                            <div class="hidden lg:block p-4 bg-white/10 rounded-[2rem] backdrop-blur-xl border border-white/20 mb-4">
+                                <img src="logo.jpg" class="h-28 w-28 object-contain">
+                            </div>
+                            <button class="w-full lg:w-auto bg-[#F6B93B] hover:bg-[#ffc84d] text-[#0A3D62] px-12 py-6 rounded-3xl font-[900] shadow-2xl hover:scale-105 active:scale-95 transition-all flex items-center justify-center uppercase text-base tracking-tighter">
+                                MUAT TURUN <i data-lucide="download" size="24" class="ml-3"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             `;
@@ -240,9 +275,12 @@
 
             if (filtered.length === 0) {
                 docGrid.innerHTML = `
-                    <div class="col-span-full py-20 text-center opacity-40 italic font-bold">
-                        <i data-lucide="search-x" class="mx-auto mb-4" size="48"></i>
-                        Tiada rekod ditemukan untuk carian anda...
+                    <div class="col-span-full py-24 text-center">
+                        <div class="bg-white w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-slate-100">
+                             <i data-lucide="file-warning" class="text-slate-300" size="40"></i>
+                        </div>
+                        <p class="text-slate-400 font-bold text-lg">Maaf, tiada dokumen dijumpai...</p>
+                        <p class="text-slate-300 text-xs uppercase tracking-widest mt-2">Cuba kata kunci yang berbeza</p>
                     </div>
                 `;
                 lucide.createIcons();
@@ -259,26 +297,34 @@
                 else if(doc.type.includes('Pelan Operasi')) typeIcon = 'map';
 
                 return `
-                <div class="bg-white p-8 rounded-[2.5rem] border border-slate-50 shadow-sm hover:shadow-2xl transition-all group">
-                    <div class="flex items-center justify-between mb-6">
-                        <span class="px-4 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest border ${doc.source === 'KPM' ? 'bg-red-50 text-red-700 border-red-100' : 'bg-blue-50 text-blue-700 border-blue-100'}">
-                            ${doc.source}
-                        </span>
-                        <span class="text-[10px] font-black text-slate-400 uppercase tracking-tighter">
-                            ${new Date(doc.date).toLocaleDateString('ms-MY')}
-                        </span>
+                <div class="bg-white p-8 rounded-[3rem] border border-slate-100 shadow-sm hover:shadow-2xl transition-all group relative overflow-hidden flex flex-col h-full">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-slate-50 rounded-full -mr-16 -mt-16 group-hover:bg-[#F6B93B]/10 transition-colors"></div>
+                    
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="flex items-center justify-between mb-8">
+                            <span class="px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-[0.15em] border ${doc.source === 'KPM' ? 'bg-red-50 text-red-600 border-red-100' : 'bg-blue-50 text-[#0A3D62] border-blue-100'}">
+                                ${doc.source}
+                            </span>
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter flex items-center">
+                                <i data-lucide="clock" size="12" class="mr-1.5"></i>
+                                ${new Date(doc.date).toLocaleDateString('ms-MY')}
+                            </span>
+                        </div>
+                        
+                        <h4 class="text-xl font-[900] text-[#0A3D62] group-hover:text-[#E74C3C] mb-6 transition-colors leading-snug flex-grow">
+                            ${doc.title}
+                        </h4>
+                        
+                        <div class="flex items-center text-[10px] font-black text-[#0A3D62]/70 mb-8 bg-slate-50 px-5 py-3 rounded-2xl w-fit uppercase tracking-wider border border-slate-100">
+                            <i data-lucide="${typeIcon}" size="14" class="mr-2 text-[#E74C3C]"></i>
+                            ${doc.type}
+                        </div>
+                        
+                        <button class="w-full flex items-center justify-center space-x-3 bg-[#0A3D62] text-white px-8 py-5 rounded-[1.5rem] hover:bg-[#E74C3C] transition-all font-[900] text-xs uppercase tracking-[0.1em] shadow-lg active:scale-95 group-hover:translate-y-[-4px]">
+                            <span>LIHAT ARKIB</span>
+                            <i data-lucide="arrow-right-circle" size="18" class="group-hover:translate-x-1 transition-transform"></i>
+                        </button>
                     </div>
-                    <h4 class="text-xl font-[900] text-[#0A3D62] group-hover:text-[#E74C3C] mb-4 transition-colors leading-tight">
-                        ${doc.title}
-                    </h4>
-                    <div class="flex items-center text-[10px] font-black text-[#0A3D62] mb-6 bg-slate-100 px-4 py-2 rounded-xl w-fit uppercase tracking-wider">
-                        <i data-lucide="${typeIcon}" size="14" class="mr-2"></i>
-                        ${doc.type}
-                    </div>
-                    <button class="flex items-center space-x-2 bg-[#0A3D62] text-white px-6 py-3 rounded-2xl hover:bg-[#E74C3C] transition-all font-black text-[10px] uppercase tracking-widest shadow-lg active:scale-95">
-                        <span>Papar Arkib</span>
-                        <i data-lucide="external-link" size="16"></i>
-                    </button>
                 </div>
             `}).join('');
             
@@ -292,6 +338,7 @@
             renderNav();
             renderSubMenu();
             renderDocuments();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function handleSubTabChange(sub) {
