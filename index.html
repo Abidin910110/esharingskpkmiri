@@ -12,8 +12,8 @@
     <meta name="apple-mobile-web-app-title" content="e-Sharing">
     
     <!-- Ikon untuk Android & iOS (PWA) -->
-    <link rel="apple-touch-icon" href="logo.jpg">
-    <link rel="icon" type="image/jpeg" href="logo.jpg">
+    <link class="school-logo" rel="apple-touch-icon" href="logo.jpg">
+    <link class="school-logo" rel="icon" type="image/jpeg" href="logo.jpg">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -21,138 +21,195 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         
-        /* Animasi Logo */
-        .logo-hover:hover {
-            transform: scale(1.08) rotate(2deg);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        :root {
+            --primary: #0A3D62;
+            --secondary: #F6B93B;
+            --accent: #E74C3C;
         }
 
-        /* Gradient Glassmorphism */
+        body { 
+            font-family: 'Inter', sans-serif; 
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: white;
+        }
+
+        .logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
         .glass-header {
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
         }
+
+        /* Tipografi Halus */
+        .text-heading { letter-spacing: -0.025em; }
+        .text-subheading { letter-spacing: 0.05em; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900">
+<body class="bg-slate-50 text-slate-800">
 
-    <!-- Garis hiasan atas -->
-    <div class="h-2 bg-[#F6B93B] w-full sticky top-0 z-[60]"></div>
+    <!-- Bar Hiasan Atas -->
+    <div class="h-1.5 bg-[var(--secondary)] w-full sticky top-0 z-[60]"></div>
 
-    <header class="glass-header border-b border-slate-200 sticky top-2 z-50 shadow-sm mx-2 md:mx-4 rounded-b-2xl">
+    <header class="glass-header border-b border-slate-200 sticky top-1.5 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <!-- Bahagian Logo Sekolah -->
-                <div class="flex items-center space-x-4">
-                    <div class="p-0.5 bg-white rounded-full shadow-md border-2 border-[#F6B93B] logo-hover overflow-hidden">
-                        <img src="logo.jpg" 
-                             alt="Logo SK Pendidikan Khas Miri" 
-                             class="h-14 w-14 object-cover"
-                             onerror="this.src='https://via.placeholder.com/150?text=LOGO'">
+                <div class="flex items-center space-x-3 sm:space-x-4">
+                    <!-- Logo Sekolah -->
+                    <div class="h-12 w-12 sm:h-14 sm:w-14 logo-container rounded-full border border-slate-100 shadow-sm shrink-0">
+                        <img src="logo.jpg" alt="Logo SKPK Miri" class="logo-img">
                     </div>
                     <div class="flex flex-col">
-                        <h1 class="text-2xl font-[900] text-[#0A3D62] tracking-tight leading-none uppercase">e-Sharing</h1>
-                        <div class="flex items-center mt-1 text-slate-500 font-bold uppercase tracking-widest text-[9px] sm:text-[10px]">
-                            <span class="h-[2px] w-4 bg-[#E74C3C] mr-2"></span>
+                        <h1 class="text-xl sm:text-2xl font-black text-[var(--primary)] text-heading uppercase leading-none">e-Sharing</h1>
+                        <p class="text-[8px] sm:text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">
                             SK Pendidikan Khas Miri
-                        </div>
+                        </p>
                     </div>
                 </div>
 
                 <!-- Navigasi Desktop -->
                 <nav id="desktop-nav" class="hidden lg:flex items-center space-x-1"></nav>
 
-                <!-- Menu Mobile Button -->
                 <div class="lg:hidden">
-                    <button id="mobile-menu-btn" class="p-2 text-[#0A3D62] hover:bg-slate-100 rounded-xl transition-colors">
-                        <i data-lucide="menu" size="28"></i>
+                    <button id="mobile-menu-btn" class="p-2 text-[var(--primary)] hover:bg-slate-50 rounded-xl transition-colors">
+                        <i data-lucide="menu" size="24"></i>
                     </button>
                 </div>
             </div>
         </div>
-        <!-- Dropdown Navigasi Mobile -->
-        <div id="mobile-nav" class="hidden lg:hidden bg-white border-t border-slate-100 p-4 space-y-2 shadow-xl rounded-b-2xl"></div>
+        <!-- Navigasi Mobile -->
+        <div id="mobile-nav" class="hidden lg:hidden bg-white border-t border-slate-100 p-4 space-y-1 shadow-2xl"></div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <!-- Banner Utama -->
         <section id="billboard" class="mb-12"></section>
 
         <!-- Submenu Section -->
         <section id="submenu-section" class="mb-12 hidden">
-            <div class="flex items-center space-x-2 mb-6">
-                <div class="h-px bg-slate-200 flex-1"></div>
-                <span id="submenu-title" class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4">Kategori Dokumen</span>
-                <div class="h-px bg-slate-200 flex-1"></div>
+            <div class="flex items-center space-x-3 mb-6">
+                <span id="submenu-title" class="text-[10px] font-extrabold text-slate-400 uppercase tracking-[0.2em] whitespace-nowrap">Kategori Pilihan</span>
+                <div class="h-px bg-slate-200 w-full"></div>
             </div>
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4" id="submenu-container"></div>
+            <!-- Grid dilaraskan secara dinamik bagi menyokong sehingga 9 submenu di skrin besar -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-9 gap-3 sm:gap-4" id="submenu-container"></div>
+            <!-- Bekas Senarai Kandungan Bawah Submenu -->
+            <div id="nested-submenu-container" class="mt-6 hidden"></div>
         </section>
 
-        <!-- Carian -->
+        <!-- Bar Carian -->
         <div class="relative mb-12 group">
-            <i data-lucide="search" class="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#0A3D62] transition-colors" size="20"></i>
+            <i data-lucide="search" class="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[var(--primary)] transition-colors" size="20"></i>
             <input type="text" id="search-input" placeholder="Cari dokumen, minit, atau pekeliling..." 
-                   class="w-full pl-16 pr-8 py-6 rounded-3xl bg-white border border-slate-100 shadow-sm focus:ring-4 focus:ring-[#0A3D62]/5 focus:border-[#0A3D62]/20 outline-none font-bold text-slate-700 text-lg transition-all">
+                   class="w-full pl-16 pr-8 py-5 rounded-2xl bg-white border border-slate-200 shadow-sm focus:ring-4 focus:ring-[var(--primary)]/5 focus:border-[var(--primary)]/20 outline-none font-medium text-slate-700 text-base sm:text-lg transition-all placeholder:text-slate-300">
         </div>
 
         <!-- Grid Dokumen -->
         <div class="space-y-6">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between px-2 mb-4 gap-4">
-                <h3 class="font-[900] text-[#0A3D62] uppercase tracking-[0.1em] text-xl italic flex items-center">
-                    <i data-lucide="folder-kanban" class="mr-3 text-[#E74C3C]"></i>
-                    ARKIB DOKUMEN DIGITAL
-                </h3>
-                <span id="doc-count" class="w-fit px-5 py-2 bg-[#F6B93B] rounded-full text-[10px] font-black text-[#0A3D62] shadow-sm uppercase tracking-wider">0 ITEM</span>
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between px-2 mb-6 gap-4">
+                <div>
+                    <h3 class="font-black text-[var(--primary)] uppercase tracking-wider text-lg sm:text-xl flex items-center">
+                        <span class="w-2 h-6 bg-[var(--accent)] mr-3 rounded-full"></span>
+                        Arkib Dokumen Digital
+                    </h3>
+                </div>
+                <span id="doc-count" class="w-fit px-4 py-1.5 bg-slate-100 rounded-lg text-[10px] font-bold text-slate-500 uppercase tracking-widest border border-slate-200">
+                    0 Item
+                </span>
             </div>
-            <div id="document-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
+            <div id="document-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8"></div>
         </div>
     </main>
 
-    <footer class="bg-[#0A3D62] py-20 mt-20 text-white text-center border-t-4 border-[#F6B93B]">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col items-center">
-            <div class="bg-white p-3 rounded-full mb-6 shadow-2xl border-4 border-[#F6B93B]/30">
-                <img src="logo.jpg" alt="Logo Sekolah" class="h-20 w-20 object-cover" onerror="this.src='https://via.placeholder.com/150'">
+    <footer class="bg-[var(--primary)] py-16 mt-12 text-white border-t-4 border-[var(--secondary)]">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col items-center text-center">
+            <div class="h-20 w-20 logo-container rounded-full mb-6 border-4 border-white/10 shadow-xl">
+                <img src="logo.jpg" alt="Logo SKPK Miri" class="logo-img">
             </div>
-            <h4 class="text-2xl font-[900] uppercase italic tracking-tighter">e-Sharing SKPK Miri</h4>
-            <p class="text-blue-100/50 text-[10px] font-black mt-3 uppercase tracking-[0.3em]">"Bersatu Berdikari"</p>
-            <div class="mt-8 pt-8 border-t border-white/10 w-full max-w-xs text-[10px] text-white/30 font-bold uppercase tracking-widest">
-                © 2024 Portal Rasmi SKPK Miri
+            <h4 class="text-xl font-extrabold uppercase tracking-tight text-heading italic">e-Sharing SKPK Miri</h4>
+            <p class="text-white/40 text-[10px] font-bold mt-2 uppercase tracking-[0.3em]">"Bersatu Berdikari"</p>
+            <div class="mt-10 pt-8 border-t border-white/5 w-full max-w-xs text-[9px] text-white/30 font-medium uppercase tracking-[0.2em]">
+                Sistem Pengurusan Maklumat Digital Sekolah
             </div>
         </div>
     </footer>
 
     <script>
         const documents = [
-            { id: 1, title: "Pekeliling Ikhtisas Bil. 5/2024 - Kurikulum Kebangsaan", source: "KPM", type: "Pekeliling/ SPI/PPSM", date: "2024-05-10T09:00:00" },
-            { id: 2, title: "Panduan Pengurusan MBPK Berkeperluan Khas", source: "BPKHAS", type: "Pekeliling/ SPI/PPSM", date: "2024-05-12T14:30:00" },
-            { id: 3, title: "Minit Mesyuarat Dialog Prestasi PPD Miri", source: "PPD", type: "Minit Mesyuarat", date: "2024-05-13T10:15:00" },
-            { id: 4, title: "Hebahan Cuti Peristiwa Negeri Sarawak", source: "JPN", type: "Lain-lain Hebahan", date: "2024-05-11T08:00:00" },
-            { id: 5, title: "Program Kebajikan Staf SKPK Miri", source: "LAIN-LAIN", type: "Lain-lain Hebahan", date: "2024-05-09T16:45:00" },
-            { id: 6, title: "Minit Mesyuarat Pengurusan Sekolah Bil 1", source: "KPM", type: "Minit Mesyuarat", date: "2024-05-08T10:00:00" },
-            { id: 7, title: "MySG Sekolah Rendah Versi 2024", source: "Rujukan Pengoperasian", type: "Mysg Sekolah Rendah", date: "2024-05-14T08:00:00" },
-            { id: 8, title: "Kod Amalan Pendidikan MBPK", source: "Rujukan Pengoperasian", type: "Kod Amalan MBPK", date: "2024-05-15T09:00:00" },
-            { id: 9, title: "Pelan Operasi Sekolah SKPK Miri 2024/2025", source: "Rujukan Pengoperasian", type: "Pelan Operasi Sekolah", date: "2024-05-16T10:00:00" },
-            { id: 10, title: "Minit Mesyuarat Guru Bil 2/2024", source: "SEKOLAH", type: "Minit Mesyuarat", date: "2024-05-17T09:00:00" }
+            { id: 1, title: "Pekeliling Ikhtisas Bil. 5/2024 - Pelaksanaan Kurikulum Kebangsaan", source: "KPM", type: "Pekeliling/ SPI/PPSM", date: "2024-05-10T09:00:00" },
+            { id: 2, title: "Panduan Pengurusan MBPK (Murid Berkeperluan Pendidikan Khas)", source: "BPKHAS", type: "Pekeliling/ SPI/PPSM", date: "2024-05-12T14:30:00" },
+            { id: 3, title: "Minit Mesyuarat Dialog Prestasi PPD Miri Bil 2", source: "PPD", type: "Minit Mesyuarat", date: "2024-05-13T10:15:00" },
+            { id: 4, title: "Hebahan Cuti Peristiwa Sempena Hari Gawai Sarawak", source: "JPN", type: "Lain-lain Hebahan", date: "2024-05-11T08:00:00" },
+            { id: 5, title: "Taklimat Kebajikan & Tatatertib Staf SKPK Miri", source: "LAIN-LAIN", type: "Lain-lain Hebahan", date: "2024-05-09T16:45:00" },
+            { id: 6, title: "Minit Mesyuarat Pengurusan Sekolah Bil 1/2024", source: "KPM", type: "Minit Mesyuarat", date: "2024-05-08T10:00:00" },
+            { id: 7, title: "MySG Sekolah Rendah Versi Kemas kini 2024", source: "Rujukan Pengoperasian", type: "Mysg Sekolah Rendah", date: "2024-05-14T08:00:00" },
+            { id: 8, title: "Kod Amalan Pendidikan MBPK Kebangsaan", source: "Rujukan Pengoperasian", type: "Kod Amalan MBPK", date: "2024-05-15T09:00:00" },
+            { id: 9, title: "Pelan Operasi & Strategik Sekolah 2024/2025", source: "Rujukan Pengoperasian", type: "Pelan Operasi Sekolah", date: "2024-05-16T10:00:00" },
+            { id: 10, title: "Minit Mesyuarat Guru & Staf Sokongan Bil 2", source: "SEKOLAH", type: "Minit Mesyuarat", date: "2024-05-17T09:00:00" },
+            { id: 11, title: "Pelan Tindakan Rangka Pengurusan Murid (RPM) 2026-2035", source: "Rujukan Pengoperasian", type: "RPM 2026- 2035", date: "2024-05-18T11:00:00" },
+            { id: 12, title: "Garis Panduan Pentaksiran Alternatif Sekolah Rendah (PASR) MBPK", source: "KPM", type: "Garis Panduan", date: "2024-05-19T08:30:00" },
+            { id: 13, title: "Garis Panduan Pengurusan Disiplin Murid SKPK Miri", source: "SEKOLAH", type: "Garis Panduan", date: "2024-05-19T09:15:00" },
+            { id: 14, title: "Penataran Matriks Pembelajaran Murid Berkeperluan Pendidikan Khas (MBPK)", source: "Rujukan Pengoperasian", type: "PENATARAN MATRIKS PEMBELAJARAN", date: "2026-06-01T10:00:00" },
+            { id: 15, title: "Buku Panduan Rancangan Pendidikan Individu (RPI) MBPK", source: "Rujukan Pengoperasian", type: "Buku Panduan RPI", date: "2026-06-15T09:00:00" },
+            { id: 16, title: "Garis Panduan Pelaksanaan Program Pendidikan Inklusif (PAPR)", source: "Rujukan Pengoperasian", type: "GARIS PANDUAN PAPR", date: "2026-06-20T11:30:00" },
+            { id: 17, title: "Panduan Pelaksanaan Standard Kualiti Prasekolah Kebangsaan (SK@S)", source: "Rujukan Pengoperasian", type: "PANDUAN PELAKSANAAN SK@S", date: "2026-06-22T09:00:00" },
+            { id: 18, title: "Dasar Pendidikan Digital Kementerian Pendidikan Malaysia", source: "Rujukan Pengoperasian", type: "DASAR PENDIDIKAN DIGITAL", date: "2026-06-24T10:00:00" },
+            { id: 19, title: "Pemantapan Pengurusan Kurikulum Dan PBS PPD Miri", source: "PPD", type: "PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS", date: "2026-06-26T14:00:00" },
+            { id: 20, title: "Taklimat Pemantapan Pengurusan Kurikulum Dan PBS Bersepadu", source: "LAIN-LAIN", type: "PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS", date: "2026-06-26T15:00:00" },
+            { id: 21, title: "Hebahan Pekeliling Dan Isu Pengurusan Pendidikan Daerah Miri", source: "PPD", type: "Lain-lain Hebahan", date: "2026-06-25T08:00:00" }
         ];
 
         const menuItems = ["Semua", "KPM", "BPKHAS", "JPN", "PPD", "SEKOLAH", "Rujukan Pengoperasian", "LAIN-LAIN"];
         
+        // Submenu biasa agensi
         const agencySubMenu = [
             { id: 'Minit Mesyuarat', label: 'Minit Mesyuarat', icon: 'clipboard-list' },
             { id: 'Pekeliling/ SPI/PPSM', label: 'Pekeliling/ SPI/PPSM', icon: 'book-open' },
+            { id: 'Garis Panduan', label: 'Garis Panduan', icon: 'scroll' },
             { id: 'Lain-lain Hebahan', label: 'Lain-lain Hebahan', icon: 'megaphone' }
         ];
 
+        // Submenu khusus untuk PPD (PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS dihapuskan daripada paparan langsung)
+        const ppdSubMenu = [
+            { id: 'Minit Mesyuarat', label: 'Minit Mesyuarat', icon: 'clipboard-list' },
+            { id: 'Pekeliling/ SPI/PPSM', label: 'Pekeliling/ SPI/PPSM', icon: 'book-open' },
+            { id: 'Garis Panduan', label: 'Garis Panduan', icon: 'scroll' },
+            { id: 'Lain-lain Hebahan', label: 'Lain-lain Hebahan', icon: 'megaphone' }
+        ];
+
+        // Submenu khusus untuk LAIN-LAIN
+        const lainLainSubMenu = [
+            { id: 'Minit Mesyuarat', label: 'Minit Mesyuarat', icon: 'clipboard-list' },
+            { id: 'Pekeliling/ SPI/PPSM', label: 'Pekeliling/ SPI/PPSM', icon: 'book-open' },
+            { id: 'Garis Panduan', label: 'Garis Panduan', icon: 'scroll' },
+            { id: 'Lain-lain Hebahan', label: 'Lain-lain Hebahan', icon: 'megaphone' },
+            { id: 'PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS', label: 'Pemantapan Kurikulum/PBS', icon: 'clipboard-list' }
+        ];
+
         const operationSubMenu = [
-            { id: 'Mysg Sekolah Rendah', label: 'Mysg Sekolah Rendah', icon: 'file-text' },
-            { id: 'Kod Amalan MBPK', label: 'Kod Amalan MBPK', icon: 'shield-check' },
-            { id: 'RPI', label: 'RPI', icon: 'user-cog' },
-            { id: 'PAPR', label: 'PAPR', icon: 'layout' },
-            { id: 'SK@S', label: 'SK@S', icon: 'star' },
-            { id: 'Pelan Operasi Sekolah', label: 'Pelan Operasi Sekolah', icon: 'map' }
+            { id: 'Mysg Sekolah Rendah', label: 'MySG SR', icon: 'file-text' },
+            { id: 'Kod Amalan MBPK', label: 'Kod Amalan', icon: 'shield-check' },
+            { id: 'Buku Panduan RPI', label: 'Buku Panduan RPI', icon: 'user-cog' },
+            { id: 'GARIS PANDUAN PAPR', label: 'Garis Panduan PAPR', icon: 'layout' },
+            { id: 'PANDUAN PELAKSANAAN SK@S', label: 'Panduan SK@S', icon: 'star' },
+            { id: 'Pelan Operasi Sekolah', label: 'Pelan Operasi', icon: 'map' },
+            { id: 'RPM 2026- 2035', label: 'RPM 2026- 2035', icon: 'trending-up' },
+            { id: 'PENATARAN MATRIKS PEMBELAJARAN', label: 'Penataran Matriks', icon: 'award' },
+            { id: 'DASAR PENDIDIKAN DIGITAL', label: 'Dasar Pendidikan Digital', icon: 'monitor' }
         ];
 
         let activeTab = "Semua";
@@ -166,6 +223,7 @@
         const billboard = document.getElementById('billboard');
         const subMenuSection = document.getElementById('submenu-section');
         const subMenuContainer = document.getElementById('submenu-container');
+        const nestedSubMenuContainer = document.getElementById('nested-submenu-container');
         const searchInput = document.getElementById('search-input');
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const submenuTitle = document.getElementById('submenu-title');
@@ -188,13 +246,13 @@
 
         function renderNav() {
             desktopNav.innerHTML = menuItems.map(item => `
-                <button onclick="handleTabChange('${item}')" class="px-3 py-2 rounded-lg text-[10px] font-[900] transition-all uppercase tracking-wider ${activeTab === item ? 'bg-[#0A3D62] text-white shadow-lg shadow-[#0A3D62]/20 scale-105' : 'text-[#0A3D62] hover:bg-slate-100'}">
+                <button onclick="handleTabChange('${item}')" class="px-4 py-2 rounded-xl text-[11px] font-extrabold transition-all uppercase tracking-wider ${activeTab === item ? 'bg-[var(--primary)] text-white shadow-md' : 'text-slate-600 hover:bg-slate-100'}">
                     ${item}
                 </button>
             `).join('');
 
             mobileNav.innerHTML = menuItems.map(item => `
-                <button onclick="handleTabChange('${item}')" class="block w-full text-left px-5 py-4 rounded-2xl text-sm font-black uppercase tracking-widest ${activeTab === item ? 'bg-[#0A3D62] text-white shadow-lg' : 'text-slate-600 hover:bg-slate-50'}">
+                <button onclick="handleTabChange('${item}')" class="block w-full text-left px-5 py-4 rounded-xl text-xs font-bold uppercase tracking-widest ${activeTab === item ? 'bg-slate-50 text-[var(--primary)]' : 'text-slate-600'}">
                     ${item}
                 </button>
             `).join('');
@@ -206,21 +264,91 @@
             
             if (isAgency || isOperation) {
                 subMenuSection.classList.remove('hidden');
-                const options = isOperation ? operationSubMenu : agencySubMenu;
-                submenuTitle.textContent = isOperation ? "Navigasi Pengoperasian" : `Kategori ${activeTab}`;
                 
-                subMenuContainer.innerHTML = options.map(opt => `
-                    <button onclick="handleSubTabChange('${opt.id}')" class="flex flex-col items-center justify-center p-5 rounded-[2rem] border-2 transition-all group ${activeSubTab === opt.id ? 'border-[#0A3D62] bg-white shadow-xl scale-105 z-10' : 'border-transparent bg-white shadow-sm hover:shadow-md hover:-translate-y-1'}">
-                        <div class="p-4 rounded-2xl mb-3 ${activeSubTab === opt.id ? 'bg-[#0A3D62] text-white rotate-6' : 'bg-slate-100 text-[#0A3D62] group-hover:bg-[#E74C3C] group-hover:text-white transition-transform'}">
-                            <i data-lucide="${opt.icon}" size="20"></i>
+                let options = agencySubMenu;
+                if (activeTab === 'PPD') {
+                    options = ppdSubMenu;
+                } else if (activeTab === 'LAIN-LAIN') {
+                    options = lainLainSubMenu;
+                } else if (isOperation) {
+                    options = operationSubMenu;
+                }
+                
+                submenuTitle.textContent = isOperation ? "Navigasi Operasi" : `Kategori ${activeTab}`;
+                
+                subMenuContainer.innerHTML = options.map(opt => {
+                    let clickAction = `handleSubTabChange('${opt.id}')`;
+                    
+                    // Semak butang tindakan khas
+                    if (opt.id === 'PENATARAN MATRIKS PEMBELAJARAN') {
+                        clickAction = `window.open('https://drive.google.com/file/d/1jr76SrTXBNd8E4zKtev62kQbrrASa2KJ/view?usp=sharing', '_blank')`;
+                    } else if (opt.id === 'RPM 2026- 2035') {
+                        clickAction = `window.open('https://drive.google.com/file/d/1NO2bE_ZUzmkN_x38Apy2OPnkWAIBg7dX/view?usp=sharing', '_blank')`;
+                    } else if (opt.id === 'Mysg Sekolah Rendah') {
+                        clickAction = `window.open('https://drive.google.com/file/d/1xE4ZUS-XeT4RiHKkdfQ-W-CyAuxVkxxt/view?usp=sharing', '_blank')`;
+                    } else if (opt.id === 'Kod Amalan MBPK') {
+                        clickAction = `window.open('https://drive.google.com/file/d/1bCa8u8kTeiDpmMRnimIdaH1GnWfnQxeP/view?usp=sharing', '_blank')`;
+                    } else if (opt.id === 'Buku Panduan RPI') {
+                        clickAction = `window.open('https://drive.google.com/file/d/1MUcYHm0QYPMjcime7QYFAEhFECx3c9-4/view?usp=sharing', '_blank')`;
+                    } else if (opt.id === 'GARIS PANDUAN PAPR') {
+                        clickAction = `window.open('https://drive.google.com/file/d/1fSeZLSOUVIs4KYrT0_RFdPHZnF5hLfMl/view?usp=sharing', '_blank')`;
+                    } else if (opt.id === 'PANDUAN PELAKSANAAN SK@S') {
+                        clickAction = `window.open('https://drive.google.com/file/d/1AqMu5Ra9eO5NEb1ZFZsl0OcOhbH7Hhlp/view?usp=sharing', '_blank')`;
+                    } else if (opt.id === 'DASAR PENDIDIKAN DIGITAL') {
+                        clickAction = `window.open('https://drive.google.com/file/d/14GwavMDPZ3cmGz26JGUMDPNCJK2QwzvH/view?usp=sharing', '_blank')`;
+                    } else if (activeTab === 'LAIN-LAIN' && opt.id === 'PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS') {
+                        clickAction = `window.open('https://drive.google.com/file/d/1fFF1hQuoJVkmEqQSzVfugXIvqeTE3sHa/view?usp=sharing', '_blank')`;
+                    }
+
+                    return `
+                        <button onclick="${clickAction}" class="flex flex-col items-center justify-center p-4 rounded-2xl border transition-all ${activeSubTab === opt.id ? 'border-[var(--primary)] bg-white shadow-lg ring-4 ring-[var(--primary)]/5' : 'border-slate-100 bg-white hover:border-slate-200 shadow-sm'}">
+                            <div class="p-3 rounded-xl mb-2 ${activeSubTab === opt.id ? 'bg-[var(--primary)] text-white' : 'bg-slate-50 text-slate-400 group-hover:text-[var(--primary)]'}">
+                                <i data-lucide="${opt.icon}" size="18"></i>
+                            </div>
+                            <span class="font-extrabold text-[9px] text-center uppercase tracking-tight ${activeSubTab === opt.id ? 'text-[var(--primary)]' : 'text-slate-500'}">
+                                ${opt.label}
+                            </span>
+                        </button>
+                    `;
+                }).join('');
+
+                // Logik Paparan Senarai Dinamik Di Bawah "Lain-lain Hebahan"
+                if (activeSubTab === 'Lain-lain Hebahan') {
+                    nestedSubMenuContainer.classList.remove('hidden');
+                    nestedSubMenuContainer.innerHTML = `
+                        <div class="p-6 bg-white border border-slate-100 rounded-3xl shadow-sm transition-all animate-fadeIn">
+                            <div class="flex items-center space-x-2 mb-4">
+                                <span class="w-1.5 h-4 bg-[var(--accent)] rounded-full"></span>
+                                <h4 class="text-[10px] font-extrabold text-[var(--primary)] uppercase tracking-widest">
+                                    Senarai Hebahan Rasmi
+                                </h4>
+                            </div>
+                            <div class="space-y-3">
+                                <a href="https://drive.google.com/file/d/1fFF1hQuoJVkmEqQSzVfugXIvqeTE3sHa/view?usp=sharing" target="_blank" 
+                                   class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-slate-100/80 hover:text-[var(--primary)] border border-slate-100 transition-all group gap-4">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="p-2.5 bg-white text-[var(--primary)] rounded-xl shadow-sm border border-slate-100">
+                                            <i data-lucide="clipboard-list" size="16"></i>
+                                        </div>
+                                        <span class="text-xs font-bold text-slate-700 group-hover:text-[var(--primary)]">
+                                            1. PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS
+                                        </span>
+                                    </div>
+                                    <span class="w-full sm:w-auto text-center text-[9px] text-[var(--primary)] font-extrabold uppercase tracking-widest flex items-center justify-center gap-1.5 bg-white px-4 py-2 rounded-xl shadow-sm border border-slate-100">
+                                        Buka Dokumen <i data-lucide="external-link" size="11"></i>
+                                    </span>
+                                </a>
+                            </div>
                         </div>
-                        <span class="font-black text-[9px] text-center uppercase tracking-tighter ${activeSubTab === opt.id ? 'text-[#0A3D62]' : 'text-slate-600'}">
-                            ${opt.label}
-                        </span>
-                    </button>
-                `).join('');
+                    `;
+                } else {
+                    nestedSubMenuContainer.classList.add('hidden');
+                    nestedSubMenuContainer.innerHTML = '';
+                }
+
             } else {
                 subMenuSection.classList.add('hidden');
+                nestedSubMenuContainer.classList.add('hidden');
             }
             lucide.createIcons();
         }
@@ -230,31 +358,29 @@
             const dateStr = new Date(latest.date).toLocaleDateString('ms-MY', { day: 'numeric', month: 'long', year: 'numeric' });
             
             billboard.innerHTML = `
-                <div class="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-[#0A3D62] via-[#0A3D62] to-[#205072] text-white shadow-2xl border-b-8 border-[#F6B93B]">
-                    <!-- Corak latar belakang -->
+                <div class="relative overflow-hidden rounded-[2.5rem] bg-[var(--primary)] text-white shadow-xl">
                     <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-20 -mt-20 blur-3xl"></div>
                     
-                    <div class="relative z-10 p-10 md:p-20 flex flex-col lg:flex-row lg:items-center justify-between gap-12">
+                    <div class="relative z-10 p-8 sm:p-16 flex flex-col lg:flex-row lg:items-center justify-between gap-10">
                         <div class="flex-1">
-                            <div class="flex items-center space-x-3 mb-8">
-                                <span class="px-5 py-2 bg-[#E74C3C] text-[10px] font-[900] rounded-full shadow-lg border border-red-400 uppercase tracking-widest animate-pulse">BARU</span>
-                                <span class="text-xs font-black text-[#F6B93B] uppercase tracking-[0.2em]">${latest.source}</span>
+                            <div class="flex items-center space-x-3 mb-6">
+                                <span class="px-4 py-1.5 bg-[var(--accent)] text-[9px] font-black rounded-lg uppercase tracking-widest shadow-lg">Terkini</span>
+                                <span class="text-[10px] font-extrabold text-[var(--secondary)] uppercase tracking-[0.2em]">${latest.source}</span>
                             </div>
-                            <h3 class="text-4xl md:text-6xl font-[900] mb-8 leading-[1.1] tracking-tight">
+                            <h3 class="text-3xl sm:text-5xl font-black mb-8 leading-tight tracking-tight text-heading">
                                 ${latest.title}
                             </h3>
-                            <div class="flex items-center text-blue-100 font-bold bg-white/10 w-fit px-6 py-3 rounded-2xl backdrop-blur-md border border-white/10">
-                                <i data-lucide="calendar" size="20" class="mr-3 text-[#F6B93B]"></i>
-                                <span class="text-sm uppercase tracking-widest">${dateStr}</span>
+                            <div class="flex items-center text-blue-100/60 font-bold text-[11px] uppercase tracking-widest">
+                                <i data-lucide="calendar" size="16" class="mr-3"></i>
+                                <span>Kemaskini: ${dateStr}</span>
                             </div>
                         </div>
-                        <div class="flex flex-col items-center gap-4">
-                            <!-- Logo dalam billboard -->
-                            <div class="hidden lg:block p-4 bg-white/10 rounded-[2rem] backdrop-blur-xl border border-white/20 mb-4">
-                                <img src="logo.jpg" class="h-28 w-28 object-contain">
+                        <div class="flex flex-col items-center gap-6">
+                            <div class="hidden lg:block h-24 w-24 logo-container rounded-2xl border border-white/10 shadow-2xl p-2 bg-white/5 backdrop-blur-md">
+                                <img src="logo.jpg" alt="Logo" class="logo-img opacity-80">
                             </div>
-                            <button class="w-full lg:w-auto bg-[#F6B93B] hover:bg-[#ffc84d] text-[#0A3D62] px-12 py-6 rounded-3xl font-[900] shadow-2xl hover:scale-105 active:scale-95 transition-all flex items-center justify-center uppercase text-base tracking-tighter">
-                                MUAT TURUN <i data-lucide="download" size="24" class="ml-3"></i>
+                            <button onclick="window.open('https://drive.google.com/file/d/14GwavMDPZ3cmGz26JGUMDPNCJK2QwzvH/view?usp=sharing', '_blank')" class="w-full lg:w-auto bg-[var(--secondary)] text-[var(--primary)] px-10 py-5 rounded-2xl font-black shadow-lg hover:brightness-105 active:scale-95 transition-all flex items-center justify-center uppercase text-sm tracking-tight">
+                                Buka Dokumen <i data-lucide="external-link" size="18" class="ml-3"></i>
                             </button>
                         </div>
                     </div>
@@ -271,19 +397,14 @@
                 return matchesTab && matchesSubTab && matchesSearch;
             }).sort((a, b) => new Date(b.date) - new Date(a.date));
 
-            docCount.textContent = `${filtered.length} ITEM DIJUMPAI`;
+            docCount.textContent = `${filtered.length} Item Dijumpai`;
 
             if (filtered.length === 0) {
                 docGrid.innerHTML = `
-                    <div class="col-span-full py-24 text-center">
-                        <div class="bg-white w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-slate-100">
-                             <i data-lucide="file-warning" class="text-slate-300" size="40"></i>
-                        </div>
-                        <p class="text-slate-400 font-bold text-lg">Maaf, tiada dokumen dijumpai...</p>
-                        <p class="text-slate-300 text-xs uppercase tracking-widest mt-2">Cuba kata kunci yang berbeza</p>
+                    <div class="col-span-full py-20 text-center">
+                        <p class="text-slate-400 font-bold text-sm uppercase tracking-widest italic">Tiada rekod dijumpai...</p>
                     </div>
                 `;
-                lucide.createIcons();
                 return;
             }
 
@@ -291,42 +412,67 @@
                 let typeIcon = 'file-text';
                 if(doc.type.includes('Minit')) typeIcon = 'clipboard-list';
                 else if(doc.type.includes('Pekeliling')) typeIcon = 'book-open';
-                else if(doc.type.includes('Hebahan')) typeIcon = 'megaphone';
-                else if(doc.type.includes('Kod Amalan')) typeIcon = 'shield-check';
+                else if(doc.type.includes('Hebahan') || doc.type === 'Lain-lain Hebahan') typeIcon = 'megaphone';
+                else if(doc.type.includes('Garis Panduan') || doc.type === 'GARIS PANDUAN PAPR') typeIcon = 'scroll';
+                else if(doc.type.includes('RPM')) typeIcon = 'trending-up';
                 else if(doc.type.includes('RPI')) typeIcon = 'user-cog';
+                else if(doc.type.includes('PAPR') || doc.type === 'GARIS PANDUAN PAPR') typeIcon = 'layout';
+                else if(doc.type.includes('SK@S') || doc.type === 'PANDUAN PELAKSANAAN SK@S') typeIcon = 'star';
                 else if(doc.type.includes('Pelan Operasi')) typeIcon = 'map';
+                else if(doc.type.includes('MATRIKS')) typeIcon = 'award';
+                else if(doc.type.includes('DIGITAL') || doc.type === 'DASAR PENDIDIKAN DIGITAL') typeIcon = 'monitor';
+                else if(doc.type === 'PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS') typeIcon = 'clipboard-list';
+
+                let viewAction = ``;
+                if (doc.type === 'PENATARAN MATRIKS PEMBELAJARAN') {
+                    viewAction = `onclick="window.open('https://drive.google.com/file/d/1jr76SrTXBNd8E4zKtev62kQbrrASa2KJ/view?usp=sharing', '_blank')"`;
+                } else if (doc.type === 'RPM 2026- 2035') {
+                    viewAction = `onclick="window.open('https://drive.google.com/file/d/1NO2bE_ZUzmkN_x38Apy2OPnkWAIBg7dX/view?usp=sharing', '_blank')"`;
+                } else if (doc.type === 'Mysg Sekolah Rendah') {
+                    viewAction = `onclick="window.open('https://drive.google.com/file/d/1xE4ZUS-XeT4RiHKkdfQ-W-CyAuxVkxxt/view?usp=sharing', '_blank')"`;
+                } else if (doc.type === 'Kod Amalan MBPK') {
+                    viewAction = `onclick="window.open('https://drive.google.com/file/d/1bCa8u8kTeiDpmMRnimIdaH1GnWfnQxeP/view?usp=sharing', '_blank')"`;
+                } else if (doc.type === 'Buku Panduan RPI') {
+                    viewAction = `onclick="window.open('https://drive.google.com/file/d/1MUcYHm0QYPMjcime7QYFAEhFECx3c9-4/view?usp=sharing', '_blank')"`;
+                } else if (doc.type === 'GARIS PANDUAN PAPR') {
+                    viewAction = `onclick="window.open('https://drive.google.com/file/d/1fSeZLSOUVIs4KYrT0_RFdPHZnF5hLfMl/view?usp=sharing', '_blank')"`;
+                } else if (doc.type === 'PANDUAN PELAKSANAAN SK@S') {
+                    viewAction = `onclick="window.open('https://drive.google.com/file/d/1AqMu5Ra9eO5NEb1ZFZsl0OcOhbH7Hhlp/view?usp=sharing', '_blank')"`;
+                } else if (doc.type === 'DASAR PENDIDIKAN DIGITAL') {
+                    viewAction = `onclick="window.open('https://drive.google.com/file/d/14GwavMDPZ3cmGz26JGUMDPNCJK2QwzvH/view?usp=sharing', '_blank')"`;
+                } else if (doc.type === 'PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS') {
+                    viewAction = `onclick="window.open('https://drive.google.com/file/d/1fFF1hQuoJVkmEqQSzVfugXIvqeTE3sHa/view?usp=sharing', '_blank')"`;
+                } else if (doc.source === 'PPD' && doc.type === 'Lain-lain Hebahan') {
+                    viewAction = `onclick="window.open('https://drive.google.com/file/d/1fFF1hQuoJVkmEqQSzVfugXIvqeTE3sHa/view?usp=sharing', '_blank')"`;
+                }
 
                 return `
-                <div class="bg-white p-8 rounded-[3rem] border border-slate-100 shadow-sm hover:shadow-2xl transition-all group relative overflow-hidden flex flex-col h-full">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-slate-50 rounded-full -mr-16 -mt-16 group-hover:bg-[#F6B93B]/10 transition-colors"></div>
-                    
-                    <div class="relative z-10 flex flex-col h-full">
-                        <div class="flex items-center justify-between mb-8">
-                            <span class="px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-[0.15em] border ${doc.source === 'KPM' ? 'bg-red-50 text-red-600 border-red-100' : 'bg-blue-50 text-[#0A3D62] border-blue-100'}">
-                                ${doc.source}
-                            </span>
-                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter flex items-center">
-                                <i data-lucide="clock" size="12" class="mr-1.5"></i>
-                                ${new Date(doc.date).toLocaleDateString('ms-MY')}
-                            </span>
-                        </div>
-                        
-                        <h4 class="text-xl font-[900] text-[#0A3D62] group-hover:text-[#E74C3C] mb-6 transition-colors leading-snug flex-grow">
-                            ${doc.title}
-                        </h4>
-                        
-                        <div class="flex items-center text-[10px] font-black text-[#0A3D62]/70 mb-8 bg-slate-50 px-5 py-3 rounded-2xl w-fit uppercase tracking-wider border border-slate-100">
-                            <i data-lucide="${typeIcon}" size="14" class="mr-2 text-[#E74C3C]"></i>
-                            ${doc.type}
-                        </div>
-                        
-                        <button class="w-full flex items-center justify-center space-x-3 bg-[#0A3D62] text-white px-8 py-5 rounded-[1.5rem] hover:bg-[#E74C3C] transition-all font-[900] text-xs uppercase tracking-[0.1em] shadow-lg active:scale-95 group-hover:translate-y-[-4px]">
-                            <span>LIHAT ARKIB</span>
-                            <i data-lucide="arrow-right-circle" size="18" class="group-hover:translate-x-1 transition-transform"></i>
-                        </button>
+                <div class="bg-white p-7 sm:p-9 rounded-[2rem] border border-slate-200 shadow-sm hover:shadow-xl hover:border-slate-300 transition-all group flex flex-col h-full">
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="px-3 py-1 bg-slate-50 text-[var(--primary)] border border-slate-100 rounded-lg text-[9px] font-black uppercase tracking-widest">
+                            ${doc.source}
+                        </span>
+                        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
+                            ${new Date(doc.date).toLocaleDateString('ms-MY')}
+                        </span>
                     </div>
+                    
+                    <h4 class="text-lg sm:text-xl font-bold text-slate-800 group-hover:text-[var(--primary)] mb-6 leading-snug flex-grow transition-colors">
+                        ${doc.title}
+                    </h4>
+                    
+                    <div class="flex items-center text-[9px] font-extrabold text-slate-400 mb-8 uppercase tracking-widest">
+                        <i data-lucide="${typeIcon}" size="14" class="mr-2 text-[var(--accent)]"></i>
+                        ${doc.type}
+                    </div>
+                    
+                    <button ${viewAction} class="w-full flex items-center justify-center space-x-3 bg-slate-50 text-[var(--primary)] hover:bg-[var(--primary)] hover:text-white border border-slate-100 py-4 rounded-xl transition-all font-extrabold text-[10px] uppercase tracking-widest active:scale-95">
+                        <span>Lihat Arkib</span>
+                        <i data-lucide="chevron-right" size="14"></i>
+                    </button>
                 </div>
-            `}).join('');
+                `;
+            }).join('');
             
             lucide.createIcons();
         }
