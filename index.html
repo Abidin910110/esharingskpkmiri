@@ -105,8 +105,8 @@
                 <span id="submenu-title" class="text-[10px] font-extrabold text-slate-400 uppercase tracking-[0.2em] whitespace-nowrap">Kategori Pilihan</span>
                 <div class="h-px bg-slate-200 w-full"></div>
             </div>
-            <!-- Grid dilaraskan secara dinamik bagi menyokong sehingga 9 submenu di skrin besar -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-9 gap-3 sm:gap-4" id="submenu-container"></div>
+            <!-- Grid dilaraskan secara dinamik bagi menyokong sehingga 10 submenu di skrin besar -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-10 gap-3 sm:gap-4" id="submenu-container"></div>
             <!-- Bekas Senarai Kandungan Bawah Submenu -->
             <div id="nested-submenu-container" class="mt-6 hidden"></div>
         </section>
@@ -170,8 +170,23 @@
             { id: 18, title: "Dasar Pendidikan Digital Kementerian Pendidikan Malaysia", source: "Rujukan Pengoperasian", type: "DASAR PENDIDIKAN DIGITAL", date: "2026-06-24T10:00:00" },
             { id: 19, title: "Pemantapan Pengurusan Kurikulum Dan PBS PPD Miri", source: "PPD", type: "PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS", date: "2026-06-26T14:00:00" },
             { id: 20, title: "Taklimat Pemantapan Pengurusan Kurikulum Dan PBS Bersepadu", source: "LAIN-LAIN", type: "PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS", date: "2026-06-26T15:00:00" },
-            { id: 21, title: "Hebahan Pekeliling Dan Isu Pengurusan Pendidikan Daerah Miri", source: "PPD", type: "Lain-lain Hebahan", date: "2026-06-25T08:00:00" }
+            { id: 21, title: "Hebahan Pekeliling Dan Isu Pengurusan Pendidikan Daerah Miri", source: "PPD", type: "Lain-lain Hebahan", date: "2026-06-25T08:00:00" },
+            { id: 22, title: "Pelan Pengurusan Strategik Dan Pemantapan Pengurusan Kurikulum Dan PBS", source: "Rujukan Pengoperasian", type: "PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS", date: "2026-06-27T08:00:00" }
         ];
+
+        // Pemetaan Pautan Google Drive / Google Sheets Secara Berpusat
+        const pautanKhas = {
+            'PENATARAN MATRIKS PEMBELAJARAN': 'https://drive.google.com/file/d/1jr76SrTXBNd8E4zKtev62kQbrrASa2KJ/view?usp=sharing',
+            'RPM 2026- 2035': 'https://drive.google.com/file/d/1NO2bE_ZUzmkN_x38Apy2OPnkWAIBg7dX/view?usp=sharing',
+            'Mysg Sekolah Rendah': 'https://drive.google.com/file/d/1xE4ZUS-XeT4RiHKkdfQ-W-CyAuxVkxxt/view?usp=sharing',
+            'Kod Amalan MBPK': 'https://drive.google.com/file/d/1bCa8u8kTeiDpmMRnimIdaH1GnWfnQxeP/view?usp=sharing',
+            'Buku Panduan RPI': 'https://drive.google.com/file/d/1MUcYHm0QYPMjcime7QYFAEhFECx3c9-4/view?usp=sharing',
+            'GARIS PANDUAN PAPR': 'https://drive.google.com/file/d/1fSeZLSOUVIs4KYrT0_RFdPHZnF5hLfMl/view?usp=sharing',
+            'PANDUAN PELAKSANAAN SK@S': 'https://drive.google.com/file/d/1AqMu5Ra9eO5NEb1ZFZsl0OcOhbH7Hhlp/view?usp=sharing',
+            'DASAR PENDIDIKAN DIGITAL': 'https://drive.google.com/file/d/14GwavMDPZ3cmGz26JGUMDPNCJK2QwzvH/view?usp=sharing',
+            'PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS': 'https://drive.google.com/file/d/1fFF1hQuoJVkmEqQSzVfugXIvqeTE3sHa/view?usp=sharing',
+            'Pelan Operasi Sekolah': 'https://docs.google.com/spreadsheets/d/1WHLpEYHCELdRaSKV1om8Ys57_y04SfTp/edit?usp=sharing&ouid=108242961850340625656&rtpof=true&sd=true'
+        };
 
         const menuItems = ["Semua", "KPM", "BPKHAS", "JPN", "PPD", "SEKOLAH", "Rujukan Pengoperasian", "LAIN-LAIN"];
         
@@ -183,7 +198,7 @@
             { id: 'Lain-lain Hebahan', label: 'Lain-lain Hebahan', icon: 'megaphone' }
         ];
 
-        // Submenu khusus untuk PPD (PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS dihapuskan daripada paparan langsung)
+        // Submenu khusus untuk PPD
         const ppdSubMenu = [
             { id: 'Minit Mesyuarat', label: 'Minit Mesyuarat', icon: 'clipboard-list' },
             { id: 'Pekeliling/ SPI/PPSM', label: 'Pekeliling/ SPI/PPSM', icon: 'book-open' },
@@ -196,20 +211,21 @@
             { id: 'Minit Mesyuarat', label: 'Minit Mesyuarat', icon: 'clipboard-list' },
             { id: 'Pekeliling/ SPI/PPSM', label: 'Pekeliling/ SPI/PPSM', icon: 'book-open' },
             { id: 'Garis Panduan', label: 'Garis Panduan', icon: 'scroll' },
-            { id: 'Lain-lain Hebahan', label: 'Lain-lain Hebahan', icon: 'megaphone' },
-            { id: 'PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS', label: 'Pemantapan Kurikulum/PBS', icon: 'clipboard-list' }
+            { id: 'Lain-lain Hebahan', label: 'Lain-lain Hebahan', icon: 'megaphone' }
         ];
 
+        // Rujukan Pengoperasian dengan pautan spreadsheet baharu pada Pelan Operasi Sekolah
         const operationSubMenu = [
             { id: 'Mysg Sekolah Rendah', label: 'MySG SR', icon: 'file-text' },
             { id: 'Kod Amalan MBPK', label: 'Kod Amalan', icon: 'shield-check' },
             { id: 'Buku Panduan RPI', label: 'Buku Panduan RPI', icon: 'user-cog' },
             { id: 'GARIS PANDUAN PAPR', label: 'Garis Panduan PAPR', icon: 'layout' },
             { id: 'PANDUAN PELAKSANAAN SK@S', label: 'Panduan SK@S', icon: 'star' },
-            { id: 'Pelan Operasi Sekolah', label: 'Pelan Operasi', icon: 'map' },
+            { id: 'Pelan Operasi Sekolah', label: 'Pelan Operasi', icon: 'map-pin' },
             { id: 'RPM 2026- 2035', label: 'RPM 2026- 2035', icon: 'trending-up' },
             { id: 'PENATARAN MATRIKS PEMBELAJARAN', label: 'Penataran Matriks', icon: 'award' },
-            { id: 'DASAR PENDIDIKAN DIGITAL', label: 'Dasar Pendidikan Digital', icon: 'monitor' }
+            { id: 'DASAR PENDIDIKAN DIGITAL', label: 'Dasar Pendidikan Digital', icon: 'monitor' },
+            { id: 'PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS', label: 'Pelan Operasi 2026-2035', icon: 'map' }
         ];
 
         let activeTab = "Semua";
@@ -279,25 +295,9 @@
                 subMenuContainer.innerHTML = options.map(opt => {
                     let clickAction = `handleSubTabChange('${opt.id}')`;
                     
-                    // Semak butang tindakan khas
-                    if (opt.id === 'PENATARAN MATRIKS PEMBELAJARAN') {
-                        clickAction = `window.open('https://drive.google.com/file/d/1jr76SrTXBNd8E4zKtev62kQbrrASa2KJ/view?usp=sharing', '_blank')`;
-                    } else if (opt.id === 'RPM 2026- 2035') {
-                        clickAction = `window.open('https://drive.google.com/file/d/1NO2bE_ZUzmkN_x38Apy2OPnkWAIBg7dX/view?usp=sharing', '_blank')`;
-                    } else if (opt.id === 'Mysg Sekolah Rendah') {
-                        clickAction = `window.open('https://drive.google.com/file/d/1xE4ZUS-XeT4RiHKkdfQ-W-CyAuxVkxxt/view?usp=sharing', '_blank')`;
-                    } else if (opt.id === 'Kod Amalan MBPK') {
-                        clickAction = `window.open('https://drive.google.com/file/d/1bCa8u8kTeiDpmMRnimIdaH1GnWfnQxeP/view?usp=sharing', '_blank')`;
-                    } else if (opt.id === 'Buku Panduan RPI') {
-                        clickAction = `window.open('https://drive.google.com/file/d/1MUcYHm0QYPMjcime7QYFAEhFECx3c9-4/view?usp=sharing', '_blank')`;
-                    } else if (opt.id === 'GARIS PANDUAN PAPR') {
-                        clickAction = `window.open('https://drive.google.com/file/d/1fSeZLSOUVIs4KYrT0_RFdPHZnF5hLfMl/view?usp=sharing', '_blank')`;
-                    } else if (opt.id === 'PANDUAN PELAKSANAAN SK@S') {
-                        clickAction = `window.open('https://drive.google.com/file/d/1AqMu5Ra9eO5NEb1ZFZsl0OcOhbH7Hhlp/view?usp=sharing', '_blank')`;
-                    } else if (opt.id === 'DASAR PENDIDIKAN DIGITAL') {
-                        clickAction = `window.open('https://drive.google.com/file/d/14GwavMDPZ3cmGz26JGUMDPNCJK2QwzvH/view?usp=sharing', '_blank')`;
-                    } else if (activeTab === 'LAIN-LAIN' && opt.id === 'PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS') {
-                        clickAction = `window.open('https://drive.google.com/file/d/1fFF1hQuoJVkmEqQSzVfugXIvqeTE3sHa/view?usp=sharing', '_blank')`;
+                    // Buka tab pautan Google Drive atau Google Sheets jika pautan khas wujud
+                    if (pautanKhas[opt.id]) {
+                        clickAction = `window.open('${pautanKhas[opt.id]}', '_blank')`;
                     }
 
                     return `
@@ -312,19 +312,19 @@
                     `;
                 }).join('');
 
-                // Logik Paparan Senarai Dinamik Di Bawah "Lain-lain Hebahan"
-                if (activeSubTab === 'Lain-lain Hebahan') {
+                // Logik Paparan Senarai Dinamik Di Bawah "Lain-lain Hebahan" (DIHADKAN HANYA PADA MENU PPD SAHAJA)
+                if (activeSubTab === 'Lain-lain Hebahan' && activeTab === 'PPD') {
                     nestedSubMenuContainer.classList.remove('hidden');
                     nestedSubMenuContainer.innerHTML = `
                         <div class="p-6 bg-white border border-slate-100 rounded-3xl shadow-sm transition-all animate-fadeIn">
                             <div class="flex items-center space-x-2 mb-4">
                                 <span class="w-1.5 h-4 bg-[var(--accent)] rounded-full"></span>
                                 <h4 class="text-[10px] font-extrabold text-[var(--primary)] uppercase tracking-widest">
-                                    Senarai Hebahan Rasmi
+                                    Senarai Hebahan Rasmi (PPD)
                                 </h4>
                             </div>
                             <div class="space-y-3">
-                                <a href="https://drive.google.com/file/d/1fFF1hQuoJVkmEqQSzVfugXIvqeTE3sHa/view?usp=sharing" target="_blank" 
+                                <a href="${pautanKhas['PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS']}" target="_blank" 
                                    class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-slate-100/80 hover:text-[var(--primary)] border border-slate-100 transition-all group gap-4">
                                     <div class="flex items-center space-x-3">
                                         <div class="p-2.5 bg-white text-[var(--primary)] rounded-xl shadow-sm border border-slate-100">
@@ -357,6 +357,9 @@
             const latest = [...documents].sort((a, b) => new Date(b.date) - new Date(a.date))[0];
             const dateStr = new Date(latest.date).toLocaleDateString('ms-MY', { day: 'numeric', month: 'long', year: 'numeric' });
             
+            // Dapatkan pautan khusus secara dinamik berdasarkan jenis dokumen terkini
+            const targetLink = pautanKhas[latest.type] || 'https://drive.google.com';
+
             billboard.innerHTML = `
                 <div class="relative overflow-hidden rounded-[2.5rem] bg-[var(--primary)] text-white shadow-xl">
                     <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-20 -mt-20 blur-3xl"></div>
@@ -379,7 +382,7 @@
                             <div class="hidden lg:block h-24 w-24 logo-container rounded-2xl border border-white/10 shadow-2xl p-2 bg-white/5 backdrop-blur-md">
                                 <img src="logo.jpg" alt="Logo" class="logo-img opacity-80">
                             </div>
-                            <button onclick="window.open('https://drive.google.com/file/d/14GwavMDPZ3cmGz26JGUMDPNCJK2QwzvH/view?usp=sharing', '_blank')" class="w-full lg:w-auto bg-[var(--secondary)] text-[var(--primary)] px-10 py-5 rounded-2xl font-black shadow-lg hover:brightness-105 active:scale-95 transition-all flex items-center justify-center uppercase text-sm tracking-tight">
+                            <button onclick="window.open('${targetLink}', '_blank')" class="w-full lg:w-auto bg-[var(--secondary)] text-[var(--primary)] px-10 py-5 rounded-2xl font-black shadow-lg hover:brightness-105 active:scale-95 transition-all flex items-center justify-center uppercase text-sm tracking-tight">
                                 Buka Dokumen <i data-lucide="external-link" size="18" class="ml-3"></i>
                             </button>
                         </div>
@@ -418,32 +421,16 @@
                 else if(doc.type.includes('RPI')) typeIcon = 'user-cog';
                 else if(doc.type.includes('PAPR') || doc.type === 'GARIS PANDUAN PAPR') typeIcon = 'layout';
                 else if(doc.type.includes('SK@S') || doc.type === 'PANDUAN PELAKSANAAN SK@S') typeIcon = 'star';
-                else if(doc.type.includes('Pelan Operasi')) typeIcon = 'map';
+                else if(doc.type.includes('Pelan Operasi') || doc.type === 'PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS') typeIcon = 'map';
                 else if(doc.type.includes('MATRIKS')) typeIcon = 'award';
                 else if(doc.type.includes('DIGITAL') || doc.type === 'DASAR PENDIDIKAN DIGITAL') typeIcon = 'monitor';
-                else if(doc.type === 'PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS') typeIcon = 'clipboard-list';
 
+                // Gunakan pautan khas jika ada, jika tiada ia kekal sebagai penapis biasa atau pautan laluan
                 let viewAction = ``;
-                if (doc.type === 'PENATARAN MATRIKS PEMBELAJARAN') {
-                    viewAction = `onclick="window.open('https://drive.google.com/file/d/1jr76SrTXBNd8E4zKtev62kQbrrASa2KJ/view?usp=sharing', '_blank')"`;
-                } else if (doc.type === 'RPM 2026- 2035') {
-                    viewAction = `onclick="window.open('https://drive.google.com/file/d/1NO2bE_ZUzmkN_x38Apy2OPnkWAIBg7dX/view?usp=sharing', '_blank')"`;
-                } else if (doc.type === 'Mysg Sekolah Rendah') {
-                    viewAction = `onclick="window.open('https://drive.google.com/file/d/1xE4ZUS-XeT4RiHKkdfQ-W-CyAuxVkxxt/view?usp=sharing', '_blank')"`;
-                } else if (doc.type === 'Kod Amalan MBPK') {
-                    viewAction = `onclick="window.open('https://drive.google.com/file/d/1bCa8u8kTeiDpmMRnimIdaH1GnWfnQxeP/view?usp=sharing', '_blank')"`;
-                } else if (doc.type === 'Buku Panduan RPI') {
-                    viewAction = `onclick="window.open('https://drive.google.com/file/d/1MUcYHm0QYPMjcime7QYFAEhFECx3c9-4/view?usp=sharing', '_blank')"`;
-                } else if (doc.type === 'GARIS PANDUAN PAPR') {
-                    viewAction = `onclick="window.open('https://drive.google.com/file/d/1fSeZLSOUVIs4KYrT0_RFdPHZnF5hLfMl/view?usp=sharing', '_blank')"`;
-                } else if (doc.type === 'PANDUAN PELAKSANAAN SK@S') {
-                    viewAction = `onclick="window.open('https://drive.google.com/file/d/1AqMu5Ra9eO5NEb1ZFZsl0OcOhbH7Hhlp/view?usp=sharing', '_blank')"`;
-                } else if (doc.type === 'DASAR PENDIDIKAN DIGITAL') {
-                    viewAction = `onclick="window.open('https://drive.google.com/file/d/14GwavMDPZ3cmGz26JGUMDPNCJK2QwzvH/view?usp=sharing', '_blank')"`;
-                } else if (doc.type === 'PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS') {
-                    viewAction = `onclick="window.open('https://drive.google.com/file/d/1fFF1hQuoJVkmEqQSzVfugXIvqeTE3sHa/view?usp=sharing', '_blank')"`;
+                if (pautanKhas[doc.type]) {
+                    viewAction = `onclick="window.open('${pautanKhas[doc.type]}', '_blank')"`;
                 } else if (doc.source === 'PPD' && doc.type === 'Lain-lain Hebahan') {
-                    viewAction = `onclick="window.open('https://drive.google.com/file/d/1fFF1hQuoJVkmEqQSzVfugXIvqeTE3sHa/view?usp=sharing', '_blank')"`;
+                    viewAction = `onclick="window.open('${pautanKhas['PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS']}', '_blank')"`;
                 }
 
                 return `
