@@ -118,19 +118,11 @@
                    class="w-full pl-16 pr-8 py-5 rounded-2xl bg-white border border-slate-200 shadow-sm focus:ring-4 focus:ring-[var(--primary)]/5 focus:border-[var(--primary)]/20 outline-none font-medium text-slate-700 text-base sm:text-lg transition-all placeholder:text-slate-300">
         </div>
 
-        <!-- Grid Dokumen -->
+        <!-- Pengira Dokumen Tersembunyi (Mencegah JS crash setelah tajuk luaran dipadamkan) -->
+        <span id="doc-count" class="hidden"></span>
+
+        <!-- Grid Dokumen Dinamik -->
         <div class="space-y-6">
-            <div class="flex flex-col sm:flex-row sm:items-end justify-between px-2 mb-6 gap-4">
-                <div>
-                    <h3 class="font-black text-[var(--primary)] uppercase tracking-wider text-lg sm:text-xl flex items-center">
-                        <span class="w-2 h-6 bg-[var(--accent)] mr-3 rounded-full"></span>
-                        Arkib Dokumen Digital
-                    </h3>
-                </div>
-                <span id="doc-count" class="w-fit px-4 py-1.5 bg-slate-100 rounded-lg text-[10px] font-bold text-slate-500 uppercase tracking-widest border border-slate-200">
-                    0 Item
-                </span>
-            </div>
             <div id="document-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8"></div>
         </div>
     </main>
@@ -171,10 +163,10 @@
             { id: 19, title: "Pemantapan Pengurusan Kurikulum Dan PBS PPD Miri", source: "PPD", type: "PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS", date: "2026-06-26T14:00:00" },
             { id: 20, title: "Taklimat Pemantapan Pengurusan Kurikulum Dan PBS Bersepadu", source: "LAIN-LAIN", type: "PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS", date: "2026-06-26T15:00:00" },
             { id: 21, title: "Hebahan Pekeliling Dan Isu Pengurusan Pendidikan Daerah Miri", source: "PPD", type: "Lain-lain Hebahan", date: "2026-06-25T08:00:00" },
-            { id: 22, title: "Pelan Pengurusan Strategik Dan Pemantapan Pengurusan Kurikulum Dan PBS", source: "Rujukan Pengoperasian", type: "PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS", date: "2026-06-27T08:00:00" }
+            { id: 22, title: "Taklimat Pemantapan Pengurusan Kurikulum Dan PBS", source: "Rujukan Pengoperasian", type: "PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS", date: "2026-06-27T08:00:00" }
         ];
 
-        // Pemetaan Pautan Google Drive / Google Sheets Secara Berpusat
+        // Pemetaan Pautan Google Drive Secara Berpusat
         const pautanKhas = {
             'PENATARAN MATRIKS PEMBELAJARAN': 'https://drive.google.com/file/d/1jr76SrTXBNd8E4zKtev62kQbrrASa2KJ/view?usp=sharing',
             'RPM 2026- 2035': 'https://drive.google.com/file/d/1NO2bE_ZUzmkN_x38Apy2OPnkWAIBg7dX/view?usp=sharing',
@@ -214,7 +206,7 @@
             { id: 'Lain-lain Hebahan', label: 'Lain-lain Hebahan', icon: 'megaphone' }
         ];
 
-        // Rujukan Pengoperasian dengan pautan spreadsheet baharu pada Pelan Operasi Sekolah
+        // Rujukan Pengoperasian dengan submenu PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS yang dikemaskini labelnya kepada "Taklimat..."
         const operationSubMenu = [
             { id: 'Mysg Sekolah Rendah', label: 'MySG SR', icon: 'file-text' },
             { id: 'Kod Amalan MBPK', label: 'Kod Amalan', icon: 'shield-check' },
@@ -225,7 +217,7 @@
             { id: 'RPM 2026- 2035', label: 'RPM 2026- 2035', icon: 'trending-up' },
             { id: 'PENATARAN MATRIKS PEMBELAJARAN', label: 'Penataran Matriks', icon: 'award' },
             { id: 'DASAR PENDIDIKAN DIGITAL', label: 'Dasar Pendidikan Digital', icon: 'monitor' },
-            { id: 'PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS', label: 'Pelan Operasi 2026-2035', icon: 'map' }
+            { id: 'PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS', label: 'Taklimat Pemantapan Pengurusan Kurikulum Dan PBS', icon: 'map' }
         ];
 
         let activeTab = "Semua";
@@ -400,7 +392,9 @@
                 return matchesTab && matchesSubTab && matchesSearch;
             }).sort((a, b) => new Date(b.date) - new Date(a.date));
 
-            docCount.textContent = `${filtered.length} Item Dijumpai`;
+            if (docCount) {
+                docCount.textContent = `${filtered.length} Item Dijumpai`;
+            }
 
             if (filtered.length === 0) {
                 docGrid.innerHTML = `
