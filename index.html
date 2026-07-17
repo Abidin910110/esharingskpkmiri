@@ -21,7 +21,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700;800;900&display=swap');
         
         :root {
             --primary: #0A3D62;
@@ -118,11 +118,13 @@
                    class="w-full pl-16 pr-8 py-5 rounded-2xl bg-white border border-slate-200 shadow-sm focus:ring-4 focus:ring-[var(--primary)]/5 focus:border-[var(--primary)]/20 outline-none font-medium text-slate-700 text-base sm:text-lg transition-all placeholder:text-slate-300">
         </div>
 
-        <!-- Pengira Dokumen Tersembunyi (Mencegah JS crash setelah tajuk luaran dipadamkan) -->
-        <span id="doc-count" class="hidden"></span>
-
-        <!-- Grid Dokumen Dinamik -->
+        <!-- Grid Dokumen -->
         <div class="space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between px-2 mb-6 gap-4">
+                <div></div>
+                <!-- Pengira Bilangan Item Tersembunyi tetapi Kekal Berfungsi Untuk Integriti Kod -->
+                <span id="doc-count" class="hidden">0 Item</span>
+            </div>
             <div id="document-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8"></div>
         </div>
     </main>
@@ -163,10 +165,23 @@
             { id: 19, title: "Pemantapan Pengurusan Kurikulum Dan PBS PPD Miri", source: "PPD", type: "PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS", date: "2026-06-26T14:00:00" },
             { id: 20, title: "Taklimat Pemantapan Pengurusan Kurikulum Dan PBS Bersepadu", source: "LAIN-LAIN", type: "PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS", date: "2026-06-26T15:00:00" },
             { id: 21, title: "Hebahan Pekeliling Dan Isu Pengurusan Pendidikan Daerah Miri", source: "PPD", type: "Lain-lain Hebahan", date: "2026-06-25T08:00:00" },
-            { id: 22, title: "Taklimat Pemantapan Pengurusan Kurikulum Dan PBS", source: "Rujukan Pengoperasian", type: "PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS", date: "2026-06-27T08:00:00" }
+            { id: 22, title: "Taklimat Pemantapan Pengurusan Kurikulum Dan PBS", source: "Rujukan Pengoperasian", type: "Taklimat Pemantapan Pengurusan Kurikulum Dan PBS", date: "2026-06-27T08:00:00" },
+            { id: 23, title: "Garis panduan pengurusan risiko dan nasihat kesihatan berkaitan gelombang haba", source: "LAIN-LAIN", type: "Garis Panduan", date: "2026-07-16T10:00:00" },
+            { id: 24, title: "Laporan CSR PERTAMINA 2025", source: "LAIN-LAIN", type: "Garis Panduan", date: "2025-12-31T09:00:00" },
+            { id: 25, title: "Standard 4 Pendidikan Khas", source: "Rujukan Pengoperasian", type: "Standard 4 Pendidikan Khas", date: "2026-07-17T12:00:00" },
+            { id: 26, title: "Pengurusan EMBPK (Guru Penyelaras)", source: "JPN", type: "Garis Panduan", date: "2026-07-17T13:00:00" },
+            { id: 27, title: "Pengurusan EMBPK (Pengurus Sekolah)", source: "JPN", type: "Garis Panduan", date: "2026-07-17T13:15:00" },
+            { id: 28, title: "PENCAPAIAN STANDARD KUALITI PENDIDIKAN MALAYSIA KUALITI@SEKOLAH 2023-2024.pdf", source: "BPKHAS", type: "Lain-lain Hebahan", date: "2026-07-17T14:00:00" },
+            { id: 29, title: "SURAT PENURUNAN KUASA MELULUS DAN GARIS PANDUAN PEMASANGAN ALAT PENYAMAN UDARA KPM .pdf", source: "BPKHAS", type: "Garis Panduan", date: "2026-07-17T15:00:00" },
+            { id: 30, title: "Penegasan Terhadap Pematuhan Surat Pekeliling Ikhtisas KPM Bil.3 Tahun 2018 Berhubung Panduan Penyaluran Dan Penerimaan Sumbangan Daripada Sektor Swasta  dan Bukan Swasta Kpd Sekolah Kerajaan dan Sek.pdf", source: "BPKHAS", type: "Pekeliling/ SPI/PPSM", date: "2026-07-17T16:00:00" },
+            { id: 31, title: "SPPB idme belum online.pdf", source: "BPKHAS", type: "Pekeliling/ SPI/PPSM", date: "2026-07-17T16:15:00" },
+            { id: 32, title: "KEPUTUSAN MPSPK BILANGAN 1 TAHUN 2026.docx", source: "BPKHAS", type: "Minit Mesyuarat", date: "2026-07-17T17:00:00" },
+            { id: 33, title: "Garis Panduan Penutupan Institusi Pendidikan Semasa Cuaca Panas", source: "KPM", type: "Garis Panduan", date: "2026-07-18T09:00:00" },
+            { id: 34, title: "Garis Panduan Perlaksanaan Aktiviti Semasa Cuaca Panas", source: "KPM", type: "Garis Panduan", date: "2026-07-18T09:15:00" },
+            { id: 35, title: "Garis Panduan Lawatan Murid Bawah KPM mulai 2023", source: "KPM", type: "Garis Panduan", date: "2026-07-18T09:30:00" },
+            { id: 36, title: "SURAT_PELAKSANAAN_ZERO_REJECT_POLICY 2019.pdf", source: "KPM", type: "Pekeliling/ SPI/PPSM", date: "2026-07-18T10:00:00" }
         ];
 
-        // Pemetaan Pautan Google Drive Secara Berpusat
         const pautanKhas = {
             'PENATARAN MATRIKS PEMBELAJARAN': 'https://drive.google.com/file/d/1jr76SrTXBNd8E4zKtev62kQbrrASa2KJ/view?usp=sharing',
             'RPM 2026- 2035': 'https://drive.google.com/file/d/1NO2bE_ZUzmkN_x38Apy2OPnkWAIBg7dX/view?usp=sharing',
@@ -177,7 +192,21 @@
             'PANDUAN PELAKSANAAN SK@S': 'https://drive.google.com/file/d/1AqMu5Ra9eO5NEb1ZFZsl0OcOhbH7Hhlp/view?usp=sharing',
             'DASAR PENDIDIKAN DIGITAL': 'https://drive.google.com/file/d/14GwavMDPZ3cmGz26JGUMDPNCJK2QwzvH/view?usp=sharing',
             'PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS': 'https://drive.google.com/file/d/1fFF1hQuoJVkmEqQSzVfugXIvqeTE3sHa/view?usp=sharing',
-            'Pelan Operasi Sekolah': 'https://docs.google.com/spreadsheets/d/1WHLpEYHCELdRaSKV1om8Ys57_y04SfTp/edit?usp=sharing&ouid=108242961850340625656&rtpof=true&sd=true'
+            'Pelan Operasi Sekolah': 'https://docs.google.com/spreadsheets/d/1WHLpEYHCELdRaSKV1om8Ys57_y04SfTp/edit?usp=sharing&ouid=108242961850340625656&rtpof=true&sd=true',
+            'Garis panduan pengurusan risiko dan nasihat kesihatan berkaitan gelombang haba': 'https://drive.google.com/file/d/13wrbQjvl43dWYSgv-RVD_m3Fno4Hj_dr/view?usp=sharing',
+            'Laporan CSR PERTAMINA 2025': 'https://drive.google.com/file/d/1Hv_tSQnqy0Npy2FloByNsluo1Y4AmxI0/view?usp=sharing',
+            'Standard 4 Pendidikan Khas': 'https://docs.google.com/spreadsheets/d/1-gWp2eiksII45kwX91WQ6i663MPBbuCm/edit?usp=sharing&ouid=108242961850340625656&rtpof=true&sd=true',
+            'Pengurusan EMBPK (Guru Penyelaras)': 'https://drive.google.com/file/d/1iEBurZaN03X3l4V7DxyY3972dPJqZ4qr/view?usp=sharing',
+            'Pengurusan EMBPK (Pengurus Sekolah)': 'https://drive.google.com/file/d/1W1gDxvzLRz2lgUog87__sc5Y7mftj3et/view?usp=sharing',
+            'PENCAPAIAN STANDARD KUALITI PENDIDIKAN MALAYSIA KUALITI@SEKOLAH 2023-2024.pdf': 'https://drive.google.com/file/d/1aitu-RakeZ55_l0Qg-Kk7nfuYdemklfU/view?usp=sharing',
+            'SURAT PENURUNAN KUASA MELULUS DAN GARIS PANDUAN PEMASANGAN ALAT PENYAMAN UDARA KPM .pdf': 'https://drive.google.com/file/d/1aA5FzobRQ7EItHP3gMIQTHB_JLo-Usv5/view?usp=sharing',
+            'Penegasan Terhadap Pematuhan Surat Pekeliling Ikhtisas KPM Bil.3 Tahun 2018 Berhubung Panduan Penyaluran Dan Penerimaan Sumbangan Daripada Sektor Swasta  dan Bukan Swasta Kpd Sekolah Kerajaan dan Sek.pdf': 'https://drive.google.com/file/d/1dQvWBhACCQh6tVqMml0gv7Y9AKeawQpX/view?usp=sharing',
+            'SPPB idme belum online.pdf': 'https://drive.google.com/file/d/1THbQMPuAwhXeuTPl5YGqQlSstbxDJxUB/view?usp=sharing',
+            'KEPUTUSAN MPSPK BILANGAN 1 TAHUN 2026.docx': 'https://docs.google.com/document/d/1ZE8zHHibY8bPdfCrAzdAMHCHC9ys-hsq/edit?usp=sharing&ouid=108242961850340625656&rtpof=true&sd=true',
+            'Garis Panduan Penutupan Institusi Pendidikan Semasa Cuaca Panas': 'https://drive.google.com/file/d/1CtIqFZSs6AickyIcE3UqXFA5F5Q_pAif/view?usp=sharing',
+            'Garis Panduan Perlaksanaan Aktiviti Semasa Cuaca Panas': 'https://drive.google.com/file/d/1arJJ4XlvYcbh_Ssb85tIHu_cp9EZ-sGW/view?usp=sharing',
+            'Garis Panduan Lawatan Murid Bawah KPM mulai 2023': 'https://drive.google.com/file/d/1nfIG0MAJmzAF4mH3GSYt4dCSGg4rouA_/view?usp=sharing',
+            'SURAT_PELAKSANAAN_ZERO_REJECT_POLICY 2019.pdf': 'https://drive.google.com/file/d/1Qg-_IphJBT2EZcvYvVI6yrBDjlloL-D9/view?usp=sharing'
         };
 
         const menuItems = ["Semua", "KPM", "BPKHAS", "JPN", "PPD", "SEKOLAH", "Rujukan Pengoperasian", "LAIN-LAIN"];
@@ -206,18 +235,19 @@
             { id: 'Lain-lain Hebahan', label: 'Lain-lain Hebahan', icon: 'megaphone' }
         ];
 
-        // Rujukan Pengoperasian dengan submenu PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS yang dikemaskini labelnya kepada "Taklimat..."
+        // Rujukan Pengoperasian berbentuk senarai panel berstruktur
         const operationSubMenu = [
-            { id: 'Mysg Sekolah Rendah', label: 'MySG SR', icon: 'file-text' },
-            { id: 'Kod Amalan MBPK', label: 'Kod Amalan', icon: 'shield-check' },
-            { id: 'Buku Panduan RPI', label: 'Buku Panduan RPI', icon: 'user-cog' },
-            { id: 'GARIS PANDUAN PAPR', label: 'Garis Panduan PAPR', icon: 'layout' },
-            { id: 'PANDUAN PELAKSANAAN SK@S', label: 'Panduan SK@S', icon: 'star' },
-            { id: 'Pelan Operasi Sekolah', label: 'Pelan Operasi', icon: 'map-pin' },
-            { id: 'RPM 2026- 2035', label: 'RPM 2026- 2035', icon: 'trending-up' },
-            { id: 'PENATARAN MATRIKS PEMBELAJARAN', label: 'Penataran Matriks', icon: 'award' },
-            { id: 'DASAR PENDIDIKAN DIGITAL', label: 'Dasar Pendidikan Digital', icon: 'monitor' },
-            { id: 'PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS', label: 'Taklimat Pemantapan Pengurusan Kurikulum Dan PBS', icon: 'map' }
+            { id: 'Mysg Sekolah Rendah', label: '1. MySG SR', icon: 'file-text' },
+            { id: 'Kod Amalan MBPK', label: '2. Kod Amalan', icon: 'shield-check' },
+            { id: 'Buku Panduan RPI', label: '3. Buku Panduan RPI', icon: 'user-cog' },
+            { id: 'GARIS PANDUAN PAPR', label: '4. Garis Panduan PAPR', icon: 'layout' },
+            { id: 'PANDUAN PELAKSANAAN SK@S', label: '5. Panduan SK@S', icon: 'star' },
+            { id: 'Pelan Operasi Sekolah', label: '6. Pelan Operasi', icon: 'map-pin' },
+            { id: 'RPM 2026- 2035', label: '7. RPM 2026- 2035', icon: 'trending-up' },
+            { id: 'PENATARAN MATRIKS PEMBELAJARAN', label: '8. Penataran Matriks', icon: 'award' },
+            { id: 'DASAR PENDIDIKAN DIGITAL', label: '9. Dasar Pendidikan Digital', icon: 'monitor' },
+            { id: 'Standard 4 Pendidikan Khas', label: '10. Standard 4 Pendidikan Khas', icon: 'award' },
+            { id: 'Taklimat Pemantapan Pengurusan Kurikulum Dan PBS', label: '11. Taklimat Pemantapan', icon: 'map' }
         ];
 
         let activeTab = "Semua";
@@ -284,27 +314,57 @@
                 
                 submenuTitle.textContent = isOperation ? "Navigasi Operasi" : `Kategori ${activeTab}`;
                 
-                subMenuContainer.innerHTML = options.map(opt => {
-                    let clickAction = `handleSubTabChange('${opt.id}')`;
-                    
-                    // Buka tab pautan Google Drive atau Google Sheets jika pautan khas wujud
-                    if (pautanKhas[opt.id]) {
-                        clickAction = `window.open('${pautanKhas[opt.id]}', '_blank')`;
-                    }
+                if (isOperation) {
+                    // Paparan Panel Rujukan Berstruktur untuk Rujukan Pengoperasian
+                    subMenuContainer.className = "col-span-full space-y-3";
+                    subMenuContainer.innerHTML = options.map((opt) => {
+                        let clickAction = `handleSubTabChange('${opt.id}')`;
+                        
+                        // Menentukan pautan rujukan khas
+                        if (pautanKhas[opt.id]) {
+                            clickAction = `window.open('${pautanKhas[opt.id]}', '_blank')`;
+                        } else if (opt.id === 'Taklimat Pemantapan Pengurusan Kurikulum Dan PBS') {
+                            clickAction = `window.open('${pautanKhas['PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS']}', '_blank')`;
+                        }
 
-                    return `
-                        <button onclick="${clickAction}" class="flex flex-col items-center justify-center p-4 rounded-2xl border transition-all ${activeSubTab === opt.id ? 'border-[var(--primary)] bg-white shadow-lg ring-4 ring-[var(--primary)]/5' : 'border-slate-100 bg-white hover:border-slate-200 shadow-sm'}">
-                            <div class="p-3 rounded-xl mb-2 ${activeSubTab === opt.id ? 'bg-[var(--primary)] text-white' : 'bg-slate-50 text-slate-400 group-hover:text-[var(--primary)]'}">
-                                <i data-lucide="${opt.icon}" size="18"></i>
-                            </div>
-                            <span class="font-extrabold text-[9px] text-center uppercase tracking-tight ${activeSubTab === opt.id ? 'text-[var(--primary)]' : 'text-slate-500'}">
-                                ${opt.label}
-                            </span>
-                        </button>
-                    `;
-                }).join('');
+                        return `
+                            <button onclick="${clickAction}" class="w-full flex flex-col sm:flex-row items-start sm:items-center justify-between p-5 rounded-2xl bg-white hover:bg-slate-50 border border-slate-100 hover:border-slate-200 shadow-sm transition-all group gap-4 text-left">
+                                <div class="flex items-center space-x-4">
+                                    <div class="p-2.5 bg-slate-50 text-[var(--primary)] rounded-xl group-hover:bg-[var(--primary)] group-hover:text-white transition-all">
+                                        <i data-lucide="${opt.icon}" size="18"></i>
+                                    </div>
+                                    <span class="text-xs sm:text-sm font-bold text-slate-700 group-hover:text-[var(--primary)] transition-colors">
+                                        ${opt.label}
+                                    </span>
+                                </div>
+                                <span class="w-full sm:w-auto text-center text-[9px] text-[var(--primary)] font-extrabold uppercase tracking-widest flex items-center justify-center gap-1.5 bg-slate-50 px-4 py-2.5 rounded-xl border border-slate-100 group-hover:bg-[var(--primary)] group-hover:text-white group-hover:border-transparent transition-all">
+                                    Buka Dokumen <i data-lucide="external-link" size="11"></i>
+                                </span>
+                            </button>
+                        `;
+                    }).join('');
+                } else {
+                    // Paparan Grid Submenu Butang Biasa untuk Agensi
+                    subMenuContainer.className = "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-10 gap-3 sm:gap-4";
+                    subMenuContainer.innerHTML = options.map(opt => {
+                        let clickAction = `handleSubTabChange('${opt.id}')`;
+                        if (pautanKhas[opt.id]) {
+                            clickAction = `window.open('${pautanKhas[opt.id]}', '_blank')`;
+                        }
 
-                // Logik Paparan Senarai Dinamik Di Bawah "Lain-lain Hebahan" (DIHADKAN HANYA PADA MENU PPD SAHAJA)
+                        return `
+                            <button onclick="${clickAction}" class="flex flex-col items-center justify-center p-4 rounded-2xl border transition-all ${activeSubTab === opt.id ? 'border-[var(--primary)] bg-white shadow-lg ring-4 ring-[var(--primary)]/5' : 'border-slate-100 bg-white hover:border-slate-200 shadow-sm'}">
+                                <div class="p-3 rounded-xl mb-2 ${activeSubTab === opt.id ? 'bg-[var(--primary)] text-white' : 'bg-slate-50 text-slate-400 group-hover:text-[var(--primary)]'}">
+                                    <i data-lucide="${opt.icon}" size="18"></i>
+                                </div>
+                                <span class="font-extrabold text-[9px] text-center uppercase tracking-tight ${activeSubTab === opt.id ? 'text-[var(--primary)]' : 'text-slate-500'}">
+                                    ${opt.label}
+                                </span>
+                            </button>
+                        `;
+                    }).join('');
+                }
+
                 if (activeSubTab === 'Lain-lain Hebahan' && activeTab === 'PPD') {
                     nestedSubMenuContainer.classList.remove('hidden');
                     nestedSubMenuContainer.innerHTML = `
@@ -333,6 +393,300 @@
                             </div>
                         </div>
                     `;
+                } else if (activeSubTab === 'Lain-lain Hebahan' && activeTab === 'BPKHAS') {
+                    nestedSubMenuContainer.classList.remove('hidden');
+                    nestedSubMenuContainer.innerHTML = `
+                        <div class="p-6 bg-white border border-slate-100 rounded-3xl shadow-sm transition-all animate-fadeIn">
+                            <div class="flex items-center space-x-2 mb-4">
+                                <span class="w-1.5 h-4 bg-[var(--accent)] rounded-full"></span>
+                                <h4 class="text-[10px] font-extrabold text-[var(--primary)] uppercase tracking-widest">
+                                    Senarai Hebahan Rasmi (BPKHAS)
+                                </h4>
+                            </div>
+                            <div class="space-y-3">
+                                <a href="${pautanKhas['PENCAPAIAN STANDARD KUALITI PENDIDIKAN MALAYSIA KUALITI@SEKOLAH 2023-2024.pdf']}" target="_blank" 
+                                   class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-slate-100/80 hover:text-[var(--primary)] border border-slate-100 transition-all group gap-4">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="p-2.5 bg-white text-[var(--primary)] rounded-xl shadow-sm border border-slate-100">
+                                            <i data-lucide="megaphone" size="16"></i>
+                                        </div>
+                                        <span class="text-xs font-bold text-slate-700 group-hover:text-[var(--primary)]">
+                                            1. PENCAPAIAN STANDARD KUALITI PENDIDIKAN MALAYSIA KUALITI@SEKOLAH 2023-2024.pdf
+                                        </span>
+                                    </div>
+                                    <span class="w-full sm:w-auto text-center text-[9px] text-[var(--primary)] font-extrabold uppercase tracking-widest flex items-center justify-center gap-1.5 bg-white px-4 py-2 rounded-xl shadow-sm border border-slate-100">
+                                        Buka Dokumen <i data-lucide="external-link" size="11"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                } else if (activeSubTab === 'Garis Panduan' && activeTab === 'BPKHAS') {
+                    nestedSubMenuContainer.classList.remove('hidden');
+                    nestedSubMenuContainer.innerHTML = `
+                        <div class="p-6 bg-white border border-slate-100 rounded-3xl shadow-sm transition-all animate-fadeIn">
+                            <div class="flex items-center space-x-2 mb-4">
+                                <span class="w-1.5 h-4 bg-[var(--accent)] rounded-full"></span>
+                                <h4 class="text-[10px] font-extrabold text-[var(--primary)] uppercase tracking-widest">
+                                    Senarai Garis Panduan (BPKHAS)
+                                </h4>
+                            </div>
+                            <div class="space-y-3">
+                                <a href="${pautanKhas['SURAT PENURUNAN KUASA MELULUS DAN GARIS PANDUAN PEMASANGAN ALAT PENYAMAN UDARA KPM .pdf']}" target="_blank" 
+                                   class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-slate-100/80 hover:text-[var(--primary)] border border-slate-100 transition-all group gap-4">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="p-2.5 bg-white text-[var(--primary)] rounded-xl shadow-sm border border-slate-100 shrink-0">
+                                            <i data-lucide="scroll" size="16"></i>
+                                        </div>
+                                        <span class="text-xs font-bold text-slate-700 group-hover:text-[var(--primary)]">
+                                            1. SURAT PENURUNAN KUASA MELULUS DAN GARIS PANDUAN PEMASANGAN ALAT PENYAMAN UDARA KPM .pdf
+                                        </span>
+                                    </div>
+                                    <span class="w-full sm:w-auto text-center text-[9px] text-[var(--primary)] font-extrabold uppercase tracking-widest flex items-center justify-center gap-1.5 bg-white px-4 py-2 rounded-xl shadow-sm border border-slate-100 shrink-0">
+                                        Buka Dokumen <i data-lucide="external-link" size="11"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                } else if (activeSubTab === 'Garis Panduan' && activeTab === 'JPN') {
+                    nestedSubMenuContainer.classList.remove('hidden');
+                    nestedSubMenuContainer.innerHTML = `
+                        <div class="p-6 bg-white border border-slate-100 rounded-3xl shadow-sm transition-all animate-fadeIn">
+                            <div class="flex items-center space-x-2 mb-4">
+                                <span class="w-1.5 h-4 bg-[var(--accent)] rounded-full"></span>
+                                <h4 class="text-[10px] font-extrabold text-[var(--primary)] uppercase tracking-widest">
+                                    Senarai Garis Panduan (JPN)
+                                </h4>
+                            </div>
+                            <div class="space-y-3">
+                                <a href="${pautanKhas['Pengurusan EMBPK (Guru Penyelaras)']}" target="_blank" 
+                                   class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-slate-100/80 hover:text-[var(--primary)] border border-slate-100 transition-all group gap-4">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="p-2.5 bg-white text-[var(--primary)] rounded-xl shadow-sm border border-slate-100 shrink-0">
+                                            <i data-lucide="scroll" size="16"></i>
+                                        </div>
+                                        <span class="text-xs font-bold text-slate-700 group-hover:text-[var(--primary)]">
+                                            1. Pengurusan EMBPK (Guru Penyelaras)
+                                        </span>
+                                    </div>
+                                    <span class="w-full sm:w-auto text-center text-[9px] text-[var(--primary)] font-extrabold uppercase tracking-widest flex items-center justify-center gap-1.5 bg-white px-4 py-2 rounded-xl shadow-sm border border-slate-100 shrink-0">
+                                        Buka Dokumen <i data-lucide="external-link" size="11"></i>
+                                    </span>
+                                </a>
+                                <a href="${pautanKhas['Pengurusan EMBPK (Pengurus Sekolah)']}" target="_blank" 
+                                   class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-slate-100/80 hover:text-[var(--primary)] border border-slate-100 transition-all group gap-4">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="p-2.5 bg-white text-[var(--primary)] rounded-xl shadow-sm border border-slate-100 shrink-0">
+                                            <i data-lucide="scroll" size="16"></i>
+                                        </div>
+                                        <span class="text-xs font-bold text-slate-700 group-hover:text-[var(--primary)]">
+                                            2. Pengurusan EMBPK (Pengurus Sekolah)
+                                        </span>
+                                    </div>
+                                    <span class="w-full sm:w-auto text-center text-[9px] text-[var(--primary)] font-extrabold uppercase tracking-widest flex items-center justify-center gap-1.5 bg-white px-4 py-2 rounded-xl shadow-sm border border-slate-100 shrink-0">
+                                        Buka Dokumen <i data-lucide="external-link" size="11"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                } else if (activeSubTab === 'Garis Panduan' && activeTab === 'LAIN-LAIN') {
+                    nestedSubMenuContainer.classList.remove('hidden');
+                    nestedSubMenuContainer.innerHTML = `
+                        <div class="p-6 bg-white border border-slate-100 rounded-3xl shadow-sm transition-all animate-fadeIn">
+                            <div class="flex items-center space-x-2 mb-4">
+                                <span class="w-1.5 h-4 bg-[var(--accent)] rounded-full"></span>
+                                <h4 class="text-[10px] font-extrabold text-[var(--primary)] uppercase tracking-widest">
+                                    Senarai Panduan (LAIN-LAIN)
+                                </h4>
+                            </div>
+                            <div class="space-y-3">
+                                <a href="${pautanKhas['Garis panduan pengurusan risiko dan nasihat kesihatan berkaitan gelombang haba']}" target="_blank" 
+                                   class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-slate-100/80 hover:text-[var(--primary)] border border-slate-100 transition-all group gap-4">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="p-2.5 bg-white text-[var(--primary)] rounded-xl shadow-sm border border-slate-100 shrink-0">
+                                            <i data-lucide="scroll" size="16"></i>
+                                        </div>
+                                        <span class="text-xs font-bold text-slate-700 group-hover:text-[var(--primary)]">
+                                            1. Garis panduan pengurusan risiko dan nasihat kesihatan berkaitan gelombang haba
+                                        </span>
+                                    </div>
+                                    <span class="w-full sm:w-auto text-center text-[9px] text-[var(--primary)] font-extrabold uppercase tracking-widest flex items-center justify-center gap-1.5 bg-white px-4 py-2 rounded-xl shadow-sm border border-slate-100 shrink-0">
+                                        Buka Dokumen <i data-lucide="external-link" size="11"></i>
+                                    </span>
+                                </a>
+                                <a href="${pautanKhas['Laporan CSR PERTAMINA 2025']}" target="_blank" 
+                                   class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-slate-100/80 hover:text-[var(--primary)] border border-slate-100 transition-all group gap-4">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="p-2.5 bg-white text-[var(--primary)] rounded-xl shadow-sm border border-slate-100 shrink-0">
+                                            <i data-lucide="scroll" size="16"></i>
+                                        </div>
+                                        <span class="text-xs font-bold text-slate-700 group-hover:text-[var(--primary)]">
+                                            2. Laporan CSR PERTAMINA 2025
+                                        </span>
+                                    </div>
+                                    <span class="w-full sm:w-auto text-center text-[9px] text-[var(--primary)] font-extrabold uppercase tracking-widest flex items-center justify-center gap-1.5 bg-white px-4 py-2 rounded-xl shadow-sm border border-slate-100 shrink-0">
+                                        Buka Dokumen <i data-lucide="external-link" size="11"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                } else if (activeSubTab === 'Pekeliling/ SPI/PPSM' && activeTab === 'BPKHAS') {
+                    nestedSubMenuContainer.classList.remove('hidden');
+                    nestedSubMenuContainer.innerHTML = `
+                        <div class="p-6 bg-white border border-slate-100 rounded-3xl shadow-sm transition-all animate-fadeIn">
+                            <div class="flex items-center space-x-2 mb-4">
+                                <span class="w-1.5 h-4 bg-[var(--accent)] rounded-full"></span>
+                                <h4 class="text-[10px] font-extrabold text-[var(--primary)] uppercase tracking-widest">
+                                    Senarai Pekeliling / SPI / PPSM (BPKHAS)
+                                </h4>
+                            </div>
+                            <div class="space-y-3">
+                                <a href="${pautanKhas['Penegasan Terhadap Pematuhan Surat Pekeliling Ikhtisas KPM Bil.3 Tahun 2018 Berhubung Panduan Penyaluran Dan Penerimaan Sumbangan Daripada Sektor Swasta  dan Bukan Swasta Kpd Sekolah Kerajaan dan Sek.pdf']}" target="_blank" 
+                                   class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-slate-100/80 hover:text-[var(--primary)] border border-slate-100 transition-all group gap-4">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="p-2.5 bg-white text-[var(--primary)] rounded-xl shadow-sm border border-slate-100 shrink-0">
+                                            <i data-lucide="book-open" size="16"></i>
+                                        </div>
+                                        <span class="text-xs font-bold text-slate-700 group-hover:text-[var(--primary)]">
+                                            1. Penegasan Terhadap Pematuhan SPI KPM Bil.3/2018 Sumbangan Swasta & Bukan Swasta.pdf
+                                        </span>
+                                    </div>
+                                    <span class="w-full sm:w-auto text-center text-[9px] text-[var(--primary)] font-extrabold uppercase tracking-widest flex items-center justify-center gap-1.5 bg-white px-4 py-2 rounded-xl shadow-sm border border-slate-100 shrink-0">
+                                        Buka Dokumen <i data-lucide="external-link" size="11"></i>
+                                    </span>
+                                </a>
+                                <a href="${pautanKhas['SPPB idme belum online.pdf']}" target="_blank" 
+                                   class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-slate-100/80 hover:text-[var(--primary)] border border-slate-100 transition-all group gap-4">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="p-2.5 bg-white text-[var(--primary)] rounded-xl shadow-sm border border-slate-100 shrink-0">
+                                            <i data-lucide="book-open" size="16"></i>
+                                        </div>
+                                        <span class="text-xs font-bold text-slate-700 group-hover:text-[var(--primary)]">
+                                            2. SPPB idme belum online.pdf
+                                        </span>
+                                    </div>
+                                    <span class="w-full sm:w-auto text-center text-[9px] text-[var(--primary)] font-extrabold uppercase tracking-widest flex items-center justify-center gap-1.5 bg-white px-4 py-2 rounded-xl shadow-sm border border-slate-100 shrink-0">
+                                        Buka Dokumen <i data-lucide="external-link" size="11"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                } else if (activeSubTab === 'Minit Mesyuarat' && activeTab === 'BPKHAS') {
+                    nestedSubMenuContainer.classList.remove('hidden');
+                    nestedSubMenuContainer.innerHTML = `
+                        <div class="p-6 bg-white border border-slate-100 rounded-3xl shadow-sm transition-all animate-fadeIn">
+                            <div class="flex items-center space-x-2 mb-4">
+                                <span class="w-1.5 h-4 bg-[var(--accent)] rounded-full"></span>
+                                <h4 class="text-[10px] font-extrabold text-[var(--primary)] uppercase tracking-widest">
+                                    Senarai Minit Mesyuarat (BPKHAS)
+                                </h4>
+                            </div>
+                            <div class="space-y-3">
+                                <a href="${pautanKhas['KEPUTUSAN MPSPK BILANGAN 1 TAHUN 2026.docx']}" target="_blank" 
+                                   class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-slate-100/80 hover:text-[var(--primary)] border border-slate-100 transition-all group gap-4">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="p-2.5 bg-white text-[var(--primary)] rounded-xl shadow-sm border border-slate-100 shrink-0">
+                                            <i data-lucide="clipboard-list" size="16"></i>
+                                        </div>
+                                        <span class="text-xs font-bold text-slate-700 group-hover:text-[var(--primary)]">
+                                            1. KEPUTUSAN MPSPK BILANGAN 1 TAHUN 2026.docx
+                                        </span>
+                                    </div>
+                                    <span class="w-full sm:w-auto text-center text-[9px] text-[var(--primary)] font-extrabold uppercase tracking-widest flex items-center justify-center gap-1.5 bg-white px-4 py-2 rounded-xl shadow-sm border border-slate-100 shrink-0">
+                                        Buka Dokumen <i data-lucide="external-link" size="11"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                } else if (activeSubTab === 'Garis Panduan' && activeTab === 'KPM') {
+                    nestedSubMenuContainer.classList.remove('hidden');
+                    nestedSubMenuContainer.innerHTML = `
+                        <div class="p-6 bg-white border border-slate-100 rounded-3xl shadow-sm transition-all animate-fadeIn">
+                            <div class="flex items-center space-x-2 mb-4">
+                                <span class="w-1.5 h-4 bg-[var(--accent)] rounded-full"></span>
+                                <h4 class="text-[10px] font-extrabold text-[var(--primary)] uppercase tracking-widest">
+                                    Senarai Garis Panduan (KPM)
+                                </h4>
+                            </div>
+                            <div class="space-y-3">
+                                <a href="${pautanKhas['Garis Panduan Penutupan Institusi Pendidikan Semasa Cuaca Panas']}" target="_blank" 
+                                   class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-slate-100/80 hover:text-[var(--primary)] border border-slate-100 transition-all group gap-4">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="p-2.5 bg-white text-[var(--primary)] rounded-xl shadow-sm border border-slate-100 shrink-0">
+                                            <i data-lucide="scroll" size="16"></i>
+                                        </div>
+                                        <span class="text-xs font-bold text-slate-700 group-hover:text-[var(--primary)]">
+                                            1. Garis Panduan Penutupan Institusi Pendidikan Semasa Cuaca Panas
+                                        </span>
+                                    </div>
+                                    <span class="w-full sm:w-auto text-center text-[9px] text-[var(--primary)] font-extrabold uppercase tracking-widest flex items-center justify-center gap-1.5 bg-white px-4 py-2 rounded-xl shadow-sm border border-slate-100 shrink-0">
+                                        Buka Dokumen <i data-lucide="external-link" size="11"></i>
+                                    </span>
+                                </a>
+                                <a href="${pautanKhas['Garis Panduan Perlaksanaan Aktiviti Semasa Cuaca Panas']}" target="_blank" 
+                                   class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-slate-100/80 hover:text-[var(--primary)] border border-slate-100 transition-all group gap-4">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="p-2.5 bg-white text-[var(--primary)] rounded-xl shadow-sm border border-slate-100 shrink-0">
+                                            <i data-lucide="scroll" size="16"></i>
+                                        </div>
+                                        <span class="text-xs font-bold text-slate-700 group-hover:text-[var(--primary)]">
+                                            2. Garis Panduan Perlaksanaan Aktiviti Semasa Cuaca Panas
+                                        </span>
+                                    </div>
+                                    <span class="w-full sm:w-auto text-center text-[9px] text-[var(--primary)] font-extrabold uppercase tracking-widest flex items-center justify-center gap-1.5 bg-white px-4 py-2 rounded-xl shadow-sm border border-slate-100 shrink-0">
+                                        Buka Dokumen <i data-lucide="external-link" size="11"></i>
+                                    </span>
+                                </a>
+                                <a href="${pautanKhas['Garis Panduan Lawatan Murid Bawah KPM mulai 2023']}" target="_blank" 
+                                   class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-slate-100/80 hover:text-[var(--primary)] border border-slate-100 transition-all group gap-4">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="p-2.5 bg-white text-[var(--primary)] rounded-xl shadow-sm border border-slate-100 shrink-0">
+                                            <i data-lucide="scroll" size="16"></i>
+                                        </div>
+                                        <span class="text-xs font-bold text-slate-700 group-hover:text-[var(--primary)]">
+                                            3. Garis Panduan Lawatan Murid Bawah KPM mulai 2023
+                                        </span>
+                                    </div>
+                                    <span class="w-full sm:w-auto text-center text-[9px] text-[var(--primary)] font-extrabold uppercase tracking-widest flex items-center justify-center gap-1.5 bg-white px-4 py-2 rounded-xl shadow-sm border border-slate-100 shrink-0">
+                                        Buka Dokumen <i data-lucide="external-link" size="11"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                } else if (activeSubTab === 'Pekeliling/ SPI/PPSM' && activeTab === 'KPM') {
+                    nestedSubMenuContainer.classList.remove('hidden');
+                    nestedSubMenuContainer.innerHTML = `
+                        <div class="p-6 bg-white border border-slate-100 rounded-3xl shadow-sm transition-all animate-fadeIn">
+                            <div class="flex items-center space-x-2 mb-4">
+                                <span class="w-1.5 h-4 bg-[var(--accent)] rounded-full"></span>
+                                <h4 class="text-[10px] font-extrabold text-[var(--primary)] uppercase tracking-widest">
+                                    Senarai Pekeliling / SPI / PPSM (KPM)
+                                </h4>
+                            </div>
+                            <div class="space-y-3">
+                                <a href="${pautanKhas['SURAT_PELAKSANAAN_ZERO_REJECT_POLICY 2019.pdf']}" target="_blank" 
+                                   class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-slate-100/80 hover:text-[var(--primary)] border border-slate-100 transition-all group gap-4">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="p-2.5 bg-white text-[var(--primary)] rounded-xl shadow-sm border border-slate-100 shrink-0">
+                                            <i data-lucide="book-open" size="16"></i>
+                                        </div>
+                                        <span class="text-xs font-bold text-slate-700 group-hover:text-[var(--primary)]">
+                                            1. SURAT_PELAKSANAAN_ZERO_REJECT_POLICY 2019.pdf
+                                        </span>
+                                    </div>
+                                    <span class="w-full sm:w-auto text-center text-[9px] text-[var(--primary)] font-extrabold uppercase tracking-widest flex items-center justify-center gap-1.5 bg-white px-4 py-2 rounded-xl shadow-sm border border-slate-100 shrink-0">
+                                        Buka Dokumen <i data-lucide="external-link" size="11"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    `;
                 } else {
                     nestedSubMenuContainer.classList.add('hidden');
                     nestedSubMenuContainer.innerHTML = '';
@@ -350,7 +704,7 @@
             const dateStr = new Date(latest.date).toLocaleDateString('ms-MY', { day: 'numeric', month: 'long', year: 'numeric' });
             
             // Dapatkan pautan khusus secara dinamik berdasarkan jenis dokumen terkini
-            const targetLink = pautanKhas[latest.type] || 'https://drive.google.com';
+            const targetLink = pautanKhas[latest.title] || pautanKhas[latest.type] || 'https://drive.google.com';
 
             billboard.innerHTML = `
                 <div class="relative overflow-hidden rounded-[2.5rem] bg-[var(--primary)] text-white shadow-xl">
@@ -392,9 +746,7 @@
                 return matchesTab && matchesSubTab && matchesSearch;
             }).sort((a, b) => new Date(b.date) - new Date(a.date));
 
-            if (docCount) {
-                docCount.textContent = `${filtered.length} Item Dijumpai`;
-            }
+            docCount.textContent = `${filtered.length} Item Dijumpai`;
 
             if (filtered.length === 0) {
                 docGrid.innerHTML = `
@@ -421,7 +773,9 @@
 
                 // Gunakan pautan khas jika ada, jika tiada ia kekal sebagai penapis biasa atau pautan laluan
                 let viewAction = ``;
-                if (pautanKhas[doc.type]) {
+                if (pautanKhas[doc.title]) {
+                    viewAction = `onclick="window.open('${pautanKhas[doc.title]}', '_blank')"`;
+                } else if (pautanKhas[doc.type]) {
                     viewAction = `onclick="window.open('${pautanKhas[doc.type]}', '_blank')"`;
                 } else if (doc.source === 'PPD' && doc.type === 'Lain-lain Hebahan') {
                     viewAction = `onclick="window.open('${pautanKhas['PEMANTAPAN PENGURUSAN KURIKULUM DAN PBS']}', '_blank')"`;
